@@ -1,0 +1,32 @@
+name: Bebops Data Scraper
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Elke nacht om 3:00 uur
+  workflow_dispatch: # Knop om handmatig te starten
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Scraper
+        run: python scraper.py
+
+      - name: Save to Repo
+        run: |
+          git config --global user.name "BebopsBot"
+          git config --global user.email "bot@zottegembebops.be"
+          git add *.json
+          git commit -m "Update baseball data $(date)" || exit 0
+          git push
