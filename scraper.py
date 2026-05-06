@@ -1,45 +1,43 @@
 import requests
-from bs4 import BeautifulSoup
 import json
 
-def scrape_ranking(url, name):
+def scrape_it(url, name):
+    # MyWBSC sites laden data via een API. We halen de 'slug' uit jouw URL.
+    # Voorbeeld: '2026-baseball-d2-2026'
+    slug = url.split('/')[-2]
+    api_url = f"https://wbsc.org{slug}/standings"
+    
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+        'Origin': 'https://www.baseballsoftball.be'
     }
     
     try:
-        response = requests.get(url, headers=headers, timeout=15)
+        print(f"Data ophalen voor {name} via API...")
+        response = requests.get(api_url, headers=headers, timeout=15)
         response.raise_for_status()
-        soup = BeautifulSoup(response.text, 'html.parser')
         
-        # Zoek de tabel (MyWBSC gebruikt vaak de klasse 'table')
-        table = soup.find('table')
-        if not table:
-            print(f"Geen tabel gevonden op {url}")
-            return
-
-        rows = []
-        # Loop door de rijen (sla de header over)
-        for tr in table.find_all('tr')[1:]:
-            cols = tr.find_all('td')
-            if len(cols) >= 5:
-                team_data = {
-                    "rank": cols[0].text.strip(),
-                    "team": cols[1].text.strip().replace('\n', ' '),
-                    "w": cols[2].text.strip(),
-                    "l": cols[3].text.strip(),
-                    "pct": cols[5].text.strip() if len(cols) > 5 else cols[4].text.strip()
-                }
-                rows.append(team_data)
+        raw_data = response.json()
+        standings = []
         
-        # Opslaan als JSON
+        # We halen de relevante info uit de MyWBSC JSON-structuur
+        for team in raw_data.get('standings', []):
+            standings.append({
+                "rank": team.get('rank'),
+                "team": team.get('team_name'),
+                "w": team.get('wins'),
+                "l": team.get('losses'),
+                "pct": team.get('percentage'),
+                "logo": team.get('team_logo_url')
+            })
+            
         with open(f"{name}_data.json", "w", encoding="utf-8") as f:
-            json.dump(rows, f, indent=4, ensure_ascii=False)
-        print(f"✅ {name}_data.json succesvol bijgewerkt met echte data.")
+            json.dump(standings, f, indent=4, ensure_ascii=False)
+        print(f"✅ Gelukt: {name}_data.json bevat nu de echte ranking!")
 
     except Exception as e:
         print(f"⚠️ Fout bij {name}: {e}")
 
-# Jouw ploegen
-scrape_ranking("https://www.baseballsoftball.be/en/events/2026-baseball-d2-2026/standings", "D2")
-scrape_ranking("https://www.baseballsoftball.be/en/events/2026-baseball-d3-2026/standings", "D3")
+# Je kunt hier simpelweg de URL's van de bond blijven gebruiken
+scrape_it("https://www.baseballsoftball.be/en/events/2026-baseball-d2-2026/standings", "D2")
+scrape_it("https://www.baseballsoftball.be/en/events/2026-baseball-d3-2026/standings", "D3")
