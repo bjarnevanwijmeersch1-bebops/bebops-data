@@ -25,5 +25,5 @@ def scrape_it(url, name):
         print(f"⚠️ Fout bij {name}: {e}")
 
 # Jouw ploegen
-scrape_it("https://baseballsoftball.be", "D2")
-scrape_it("https://baseballsoftball.be", "D3")
+scrape_it("https://www.baseballsoftball.be/en/events/2026-baseball-d2-2026/standings", "D2")
+scrape_it("https://www.baseballsoftball.be/en/events/2026-baseball-d3-2026/standings", "D3")
