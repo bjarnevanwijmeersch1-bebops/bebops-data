@@ -9,23 +9,21 @@ def scrape_tables(url, name):
     
     try:
         print(f"Bezig met scrapen van: {url}")
-        # We gebruiken Pandas om alle tabellen op de pagina te zoeken
         tables = pd.read_html(url, storage_options=headers)
         
         if not tables:
             print(f"⚠️ Geen tabellen gevonden op {url}")
             return
 
-        # We lopen door alle gevonden tabellen op de pagina
         for i, df in enumerate(tables):
-            # We checken of de tabel wel data bevat (niet leeg is)
             if df.empty or len(df.columns) < 3:
                 continue
                 
-            # Omzetten naar een lijst van dicts
-            data_dict = df.to_dict(orient='records')
+            # CRUCIALE STAP: Vervang NaN door lege tekst zodat JSON geldig is
+            df_clean = df.fillna("")
             
-            # Opslaan: als er meer dan 1 tabel is, voegen we het nummer toe
+            data_dict = df_clean.to_dict(orient='records')
+            
             filename = f"{name}_{i}.json" if len(tables) > 1 else f"{name}.json"
             
             with open(filename, "w", encoding="utf-8") as f:
