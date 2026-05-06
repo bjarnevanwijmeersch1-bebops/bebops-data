@@ -1,7 +1,7 @@
 [
     {
         "#": 1,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "GRE  Royal Greys",
         "W": 4,
         "L": 0,
@@ -11,7 +11,7 @@
     },
     {
         "#": 2,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "DEU  Deurne Spartans 2",
         "W": 2,
         "L": 1,
@@ -21,7 +21,7 @@
     },
     {
         "#": 3,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "LEU  Leuven Twins",
         "W": 3,
         "L": 2,
@@ -31,7 +31,7 @@
     },
     {
         "#": 3,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "ZOT  Zottegem Bebops 2",
         "W": 3,
         "L": 2,
@@ -41,7 +41,7 @@
     },
     {
         "#": 5,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "BRU  Brussels Kangaroos 3",
         "W": 1,
         "L": 4,
@@ -51,7 +51,7 @@
     },
     {
         "#": 6,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "HOB  Hoboken Pioneers 2",
         "W": 0,
         "L": 4,

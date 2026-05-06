@@ -1,7 +1,7 @@
 [
     {
         "#": 1,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 5,
         "L": 0,
@@ -11,7 +11,7 @@
     },
     {
         "#": 2,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "GEN  Gent Knights",
         "W": 4,
         "L": 0,
@@ -21,7 +21,7 @@
     },
     {
         "#": 3,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "BOR  Borgerhout Squirrels 2",
         "W": 1,
         "L": 3,
@@ -31,7 +31,7 @@
     },
     {
         "#": 3,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "BRA  Brasschaat Braves 2",
         "W": 1,
         "L": 3,
@@ -41,7 +41,7 @@
     },
     {
         "#": 3,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 1,
         "L": 3,
@@ -51,7 +51,7 @@
     },
     {
         "#": 6,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "WBA  WBA Foxes",
         "W": 1,
         "L": 4,

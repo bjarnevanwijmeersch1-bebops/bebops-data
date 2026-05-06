@@ -1,7 +1,7 @@
 [
     {
         "#": 1,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "ANT  Antwerp Eagles",
         "W": 4,
         "L": 1,
@@ -11,7 +11,7 @@
     },
     {
         "#": 2,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "MER  Merchtem Cats 2",
         "W": 3,
         "L": 2,
@@ -21,7 +21,7 @@
     },
     {
         "#": 2,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "MSG  Mont-Saint-Guibert Phoenix 2",
         "W": 3,
         "L": 2,
@@ -31,7 +31,7 @@
     },
     {
         "#": 4,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "NAM  Namur Angels 2",
         "W": 2,
         "L": 2,
@@ -41,7 +41,7 @@
     },
     {
         "#": 5,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "BRI  Braine Black Rickers",
         "W": 1,
         "L": 3,
@@ -51,7 +51,7 @@
     },
     {
         "#": 6,
-        "Team": NaN,
+        "Team": "",
         "Team.1": "BRU  Brussels Kangaroos 2",
         "W": 1,
         "L": 4,
