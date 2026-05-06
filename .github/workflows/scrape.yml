@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-            - name: Run Scraper
+      - name: Run Scraper
         run: python scraper.py
 
       - name: Commit and push changes
