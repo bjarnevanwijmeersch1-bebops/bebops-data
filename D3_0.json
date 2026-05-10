@@ -3,7 +3,7 @@
         "#": 1,
         "Team": "",
         "Team.1": "GRE  Royal Greys",
-        "W": 4,
+        "W": 5,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
@@ -12,9 +12,9 @@
     {
         "#": 2,
         "Team": "",
-        "Team.1": "DEU  Deurne Spartans 2",
-        "W": 2,
-        "L": 1,
+        "Team.1": "ZOT  Zottegem Bebops 2",
+        "W": 4,
+        "L": 2,
         "T": 0,
         "PCT": 0.667,
         "GB": 1.5
@@ -22,41 +22,41 @@
     {
         "#": 3,
         "Team": "",
-        "Team.1": "LEU  Leuven Twins",
-        "W": 3,
+        "Team.1": "DEU  Deurne Spartans 2",
+        "W": 2,
         "L": 2,
         "T": 0,
-        "PCT": 0.6,
-        "GB": 1.5
+        "PCT": 0.5,
+        "GB": 2.5
     },
     {
         "#": 3,
         "Team": "",
-        "Team.1": "ZOT  Zottegem Bebops 2",
+        "Team.1": "LEU  Leuven Twins",
         "W": 3,
-        "L": 2,
+        "L": 3,
         "T": 0,
-        "PCT": 0.6,
-        "GB": 1.5
+        "PCT": 0.5,
+        "GB": 2.5
     },
     {
         "#": 5,
         "Team": "",
-        "Team.1": "BRU  Brussels Kangaroos 3",
+        "Team.1": "HOB  Hoboken Pioneers 2",
         "W": 1,
         "L": 4,
         "T": 0,
         "PCT": 0.2,
-        "GB": 3.5
+        "GB": 4.0
     },
     {
         "#": 6,
         "Team": "",
-        "Team.1": "HOB  Hoboken Pioneers 2",
-        "W": 0,
-        "L": 4,
+        "Team.1": "BRU  Brussels Kangaroos 3",
+        "W": 1,
+        "L": 5,
         "T": 0,
-        "PCT": 0.0,
-        "GB": 4.0
+        "PCT": 0.167,
+        "GB": 4.5
     }
 ]
