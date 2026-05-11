@@ -2,7 +2,7 @@
     {
         "#": 1,
         "Team": "",
-        "Team.1": "ZOT  Zottegem Bebops",
+        "Team.1": "GEN  Gent Knights",
         "W": 5,
         "L": 0,
         "T": 0,
@@ -12,51 +12,51 @@
     {
         "#": 2,
         "Team": "",
-        "Team.1": "GEN  Gent Knights",
-        "W": 4,
-        "L": 0,
+        "Team.1": "ZOT  Zottegem Bebops",
+        "W": 5,
+        "L": 1,
         "T": 0,
-        "PCT": 1.0,
+        "PCT": 0.833,
         "GB": 0.5
     },
     {
         "#": 3,
         "Team": "",
         "Team.1": "BOR  Borgerhout Squirrels 2",
-        "W": 1,
+        "W": 2,
         "L": 3,
         "T": 0,
-        "PCT": 0.25,
-        "GB": 3.5
+        "PCT": 0.4,
+        "GB": 3.0
     },
     {
         "#": 3,
         "Team": "",
         "Team.1": "BRA  Brasschaat Braves 2",
-        "W": 1,
+        "W": 2,
         "L": 3,
         "T": 0,
-        "PCT": 0.25,
-        "GB": 3.5
+        "PCT": 0.4,
+        "GB": 3.0
     },
     {
-        "#": 3,
+        "#": 5,
         "Team": "",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 1,
-        "L": 3,
+        "L": 4,
         "T": 0,
-        "PCT": 0.25,
-        "GB": 3.5
+        "PCT": 0.2,
+        "GB": 4.0
     },
     {
         "#": 6,
         "Team": "",
         "Team.1": "WBA  WBA Foxes",
         "W": 1,
-        "L": 4,
+        "L": 5,
         "T": 0,
-        "PCT": 0.2,
-        "GB": 4.0
+        "PCT": 0.167,
+        "GB": 4.5
     }
 ]
