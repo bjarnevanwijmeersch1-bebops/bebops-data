@@ -1,0 +1,51 @@
+name: Generate Sponsor Pages
+
+on:
+  # Run weekly on Sunday at 6:00 AM (good time for Belgium)
+  schedule:
+    - cron: '0 6 * * 0'
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Download sponsors from Google Drive
+        env:
+          GDRIVE_SPONSORS_FOLDER_ID: ${{ secrets.GDRIVE_SPONSORS_FOLDER_ID }}
+        run: python scripts/download_from_gdrive.py
+
+      - name: Generate sponsor pages
+        run: python scripts/generate_sponsors.py
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Auto-update sponsor pages from Google Drive"
+          git push

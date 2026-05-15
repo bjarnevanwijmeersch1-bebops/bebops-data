@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image to Base64 Converter - Bebops</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: #1a1a1a;
+        color: #fff;
+        min-height: 100vh;
+        padding: 40px;
+      }
+
+      h1 {
+        color: #c41e3a;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: #999;
+        margin-bottom: 30px;
+      }
+
+      .drop-zone {
+        border: 3px dashed #c41e3a;
+        border-radius: 12px;
+        padding: 60px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+      }
+
+      .drop-zone:hover,
+      .drop-zone.dragover {
+        background: rgba(196, 30, 58, 0.1);
+        border-color: #fff;
+      }
+
+      .drop-zone h2 {
+        margin-bottom: 10px;
+      }
+
+      .preview {
+        display: none;
+        margin-bottom: 30px;
+      }
+
+      .preview.show {
+        display: block;
+      }
+
+      .preview img {
+        max-width: 300px;
+        max-height: 200px;
+        border-radius: 8px;
+        border: 2px solid #333;
+      }
+
+      .preview h3 {
+        margin: 20px 0 10px;
+        color: #c41e3a;
+      }
+
+      .output {
+        background: #0a0a0a;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: none;
+      }
+
+      .output.show {
+        display: block;
+      }
+
+      .output label {
+        display: block;
+        color: #c41e3a;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .output textarea {
+        width: 100%;
+        height: 150px;
+        background: #1a1a1a;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #fff;
+        padding: 15px;
+        font-family: monospace;
+        font-size: 12px;
+        resize: vertical;
+      }
+
+      .output button {
+        margin-top: 10px;
+        padding: 12px 24px;
+        background: #c41e3a;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .output button:hover {
+        background: #a01830;
+      }
+
+      .copied {
+        color: #4ade80;
+        margin-left: 15px;
+        display: none;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Image to Base64 Converter</h1>
+    <p>
+      Convert your images to Base64 for embedding in PiSignage HTML overlays
+    </p>
+
+    <div class="drop-zone" id="dropZone">
+      <h2>Drop image here</h2>
+      <p>or click to select a file</p>
+      <input type="file" id="fileInput" accept="image/*" />
+    </div>
+
+    <div class="preview" id="preview">
+      <h3>Preview:</h3>
+      <img id="previewImg" src="" alt="Preview" />
+    </div>
+
+    <div class="output" id="output">
+      <label>Base64 Data URL (copy this for img src):</label>
+      <textarea id="base64Output" readonly></textarea>
+      <button onclick="copyBase64()">Copy Base64</button>
+      <span class="copied" id="copiedMsg">Copied!</span>
+    </div>
+
+    <div class="output" id="htmlOutput">
+      <label>Ready-to-use HTML img tag:</label>
+      <textarea id="htmlCode" readonly></textarea>
+      <button onclick="copyHtml()">Copy HTML</button>
+      <span class="copied" id="copiedHtml">Copied!</span>
+    </div>
+
+    <script>
+      const dropZone = document.getElementById("dropZone");
+      const fileInput = document.getElementById("fileInput");
+      const preview = document.getElementById("preview");
+      const previewImg = document.getElementById("previewImg");
+      const output = document.getElementById("output");
+      const htmlOutputDiv = document.getElementById("htmlOutput");
+      const base64Output = document.getElementById("base64Output");
+      const htmlCode = document.getElementById("htmlCode");
+
+      dropZone.addEventListener("click", () => fileInput.click());
+
+      dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("dragover");
+      });
+
+      dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("dragover");
+      });
+
+      dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("dragover");
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith("image/")) {
+          processImage(file);
+        }
+      });
+
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          processImage(file);
+        }
+      });
+
+      function processImage(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const base64 = e.target.result;
+
+          // Show preview
+          previewImg.src = base64;
+          preview.classList.add("show");
+
+          // Show base64
+          base64Output.value = base64;
+          output.classList.add("show");
+
+          // Show HTML
+          htmlCode.value = `<img src="${base64}" alt="${file.name}" class="club-logo">`;
+          htmlOutputDiv.classList.add("show");
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function copyBase64() {
+        base64Output.select();
+        document.execCommand("copy");
+        const msg = document.getElementById("copiedMsg");
+        msg.style.display = "inline";
+        setTimeout(() => (msg.style.display = "none"), 2000);
+      }
+
+      function copyHtml() {
+        htmlCode.select();
+        document.execCommand("copy");
+        const msg = document.getElementById("copiedHtml");
+        msg.style.display = "inline";
+        setTimeout(() => (msg.style.display = "none"), 2000);
+      }
+    </script>
+  </body>
+</html>
