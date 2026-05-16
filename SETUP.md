@@ -42,6 +42,7 @@ The folder ID is the part after `/folders/`: `1ABC123xyz...`
 | Secret Name | Value |
 |-------------|-------|
 | `GDRIVE_SPONSORS_FOLDER_ID` | Folder ID from Step 1 |
+| `PISIGNAGE_USERNAME` | Your PiSignage username (from URL: **username**.pisignage.com) |
 | `PISIGNAGE_EMAIL` | Your PiSignage login email |
 | `PISIGNAGE_PASSWORD` | Your PiSignage password |
 

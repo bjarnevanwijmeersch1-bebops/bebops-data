@@ -53,6 +53,7 @@ jobs:
       - name: Sync to PiSignage
         if: steps.changes.outputs.changed == 'true'
         env:
+          PISIGNAGE_USERNAME: ${{ secrets.PISIGNAGE_USERNAME }}
           PISIGNAGE_EMAIL: ${{ secrets.PISIGNAGE_EMAIL }}
           PISIGNAGE_PASSWORD: ${{ secrets.PISIGNAGE_PASSWORD }}
         run: python scripts/sync_pisignage.py

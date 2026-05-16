@@ -10,8 +10,10 @@ import re
 import requests
 from pathlib import Path
 
-# PiSignage API
-PISIGNAGE_API_BASE = "https://piathome.com/api"
+# PiSignage API - username is part of the URL
+# Format: https://{username}.pisignage.com/api
+PISIGNAGE_USERNAME = os.environ.get("PISIGNAGE_USERNAME", "")
+PISIGNAGE_API_BASE = f"https://{PISIGNAGE_USERNAME}.pisignage.com/api" if PISIGNAGE_USERNAME else ""
 
 # GitHub CDN base URL for sponsor pages
 GITHUB_USER = "bjarnevanwijmeersch1-bebops"
@@ -38,6 +40,9 @@ def get_auth_token() -> str:
     """Get authentication token from PiSignage API."""
     email = os.environ.get("PISIGNAGE_EMAIL", "")
     password = os.environ.get("PISIGNAGE_PASSWORD", "")
+
+    if not PISIGNAGE_USERNAME:
+        raise ValueError("PISIGNAGE_USERNAME must be set")
 
     if not email or not password:
         raise ValueError("PISIGNAGE_EMAIL and PISIGNAGE_PASSWORD must be set")
