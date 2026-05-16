@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests gdown
 
       - name: Download sponsors from Google Drive
         env:
@@ -49,3 +49,10 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git commit -m "Auto-update sponsor pages from Google Drive"
           git push
+
+      - name: Sync to PiSignage
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          PISIGNAGE_EMAIL: ${{ secrets.PISIGNAGE_EMAIL }}
+          PISIGNAGE_PASSWORD: ${{ secrets.PISIGNAGE_PASSWORD }}
+        run: python scripts/sync_pisignage.py

@@ -2,12 +2,21 @@
 """
 Generate sponsor HTML pages from images in the sponsors folder.
 Each image becomes a self-contained HTML page with embedded Base64.
+Also generates an MRSS feed for PiSignage integration.
 """
 
 import base64
 import os
 import re
 from pathlib import Path
+from xml.etree.ElementTree import Element, SubElement, tostring
+from xml.dom import minidom
+
+# GitHub repo info for CDN URLs
+GITHUB_USER = "bjarnevanwijmeersch1-bebops"
+GITHUB_REPO = "bebops-data"
+GITHUB_BRANCH = "main"
+CDN_BASE_URL = f"https://cdn.jsdelivr.net/gh/{GITHUB_USER}/{GITHUB_REPO}@{GITHUB_BRANCH}"
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
@@ -222,6 +231,43 @@ def generate_sponsor_html(sponsor_name: str, sponsor_image_base64: str, logo_bas
   </body>
 </html>
 '''
+
+
+def generate_mrss_feed(sponsor_files: list, slide_duration: int = 8) -> str:
+    """Generate MRSS feed for PiSignage."""
+    # Create root RSS element with media namespace
+    rss = Element('rss')
+    rss.set('version', '2.0')
+    rss.set('xmlns:media', 'http://search.yahoo.com/mrss/')
+
+    channel = SubElement(rss, 'channel')
+
+    # Channel metadata
+    title = SubElement(channel, 'title')
+    title.text = 'Bebops Sponsors'
+
+    description = SubElement(channel, 'description')
+    description.text = 'Sponsor slideshow for Bebops Baseball & Softball Club'
+
+    # Add each sponsor as an item
+    for filename, sponsor_name in sponsor_files:
+        item = SubElement(channel, 'item')
+
+        item_title = SubElement(item, 'title')
+        item_title.text = sponsor_name
+
+        # Media content with CDN URL
+        media_content = SubElement(item, 'media:content')
+        media_content.set('url', f"{CDN_BASE_URL}/frames/sponsors/{filename}")
+        media_content.set('duration', str(slide_duration))
+        media_content.set('type', 'text/html')
+
+    # Pretty print XML
+    xml_string = tostring(rss, encoding='unicode')
+    pretty_xml = minidom.parseString(xml_string).toprettyxml(indent='  ')
+    # Remove extra blank lines
+    pretty_xml = '\n'.join(line for line in pretty_xml.split('\n') if line.strip())
+    return pretty_xml
 
 
 def generate_carousel_html(sponsors: list, logo_base64: str, slide_duration: int = 8) -> str:
@@ -515,7 +561,7 @@ def main():
     all_sponsors = []
 
     # Generate HTML for each sponsor
-    generated_files = []
+    generated_files = []  # List of (filename, sponsor_name) tuples for MRSS
     for image_path in sorted(sponsor_images):
         sponsor_name = get_sponsor_name(image_path.name)
         sponsor_base64 = image_to_base64(image_path)
@@ -535,7 +581,7 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(html_content)
 
-        generated_files.append(output_file.name)
+        generated_files.append((output_file.name, sponsor_name))
         print(f"Generated: {output_file.name} ({sponsor_name})")
 
     # Generate carousel HTML with all sponsors
@@ -545,7 +591,16 @@ def main():
         f.write(carousel_html)
     print(f"\nGenerated: sponsors_carousel.html (all {len(all_sponsors)} sponsors in one file)")
 
-    print(f"\nDone! Generated {len(generated_files)} individual pages + 1 carousel in {OUTPUT_DIR}")
+    # Generate MRSS feed for PiSignage
+    mrss_file = PROJECT_ROOT / "frames" / "sponsors.mrss"
+    mrss_content = generate_mrss_feed(generated_files, slide_duration=8)
+    with open(mrss_file, "w", encoding="utf-8") as f:
+        f.write(mrss_content)
+    print(f"Generated: sponsors.mrss (MRSS feed for PiSignage)")
+    print(f"\nMRSS feed URL for PiSignage:")
+    print(f"  {CDN_BASE_URL}/frames/sponsors.mrss")
+
+    print(f"\nDone! Generated {len(generated_files)} individual pages + 1 carousel + 1 MRSS feed")
 
 
 if __name__ == "__main__":

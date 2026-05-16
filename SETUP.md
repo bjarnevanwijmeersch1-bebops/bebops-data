@@ -33,14 +33,17 @@ https://drive.google.com/drive/folders/1ABC123xyz...
 ```
 The folder ID is the part after `/folders/`: `1ABC123xyz...`
 
-### Step 2: Add Secret to GitHub
+### Step 2: Add Secrets to GitHub
 
 1. Go to your GitHub repository
 2. Click **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret**
-4. Name: `GDRIVE_SPONSORS_FOLDER_ID`
-5. Value: Paste the folder ID from Step 1
-6. Click **Add secret**
+3. Add the following secrets:
+
+| Secret Name | Value |
+|-------------|-------|
+| `GDRIVE_SPONSORS_FOLDER_ID` | Folder ID from Step 1 |
+| `PISIGNAGE_EMAIL` | Your PiSignage login email |
+| `PISIGNAGE_PASSWORD` | Your PiSignage password |
 
 ### Step 3: Upload Club Logo
 
@@ -56,9 +59,15 @@ Make sure `images/logo.png` exists in the repository with your club logo.
 
 ### Step 5: Set Up PiSignage
 
-1. Download `frames/sponsors_carousel.html` from the repository
-2. Upload to PiSignage
-3. Add to your playlist
+The workflow automatically syncs sponsors to PiSignage via API:
+
+1. A "Sponsors" playlist is created automatically
+2. Each sponsor becomes a weblink asset (8 seconds each)
+3. When sponsors change, the playlist updates automatically
+
+**Manual setup in PiSignage:**
+1. Add the "Sponsors" playlist to your display rotation
+2. The playlist contains individual sponsor pages that PiSignage manages
 
 ---
 
