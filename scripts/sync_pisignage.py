@@ -47,14 +47,24 @@ def get_auth_token() -> str:
     if not email or not password:
         raise ValueError("PISIGNAGE_EMAIL and PISIGNAGE_PASSWORD must be set")
 
-    response = requests.post(
-        f"{PISIGNAGE_API_BASE}/session",
-        json={
-            "email": email,
-            "password": password,
-            "getToken": True
-        }
-    )
+    url = f"{PISIGNAGE_API_BASE}/session"
+    payload = {
+        "email": email,
+        "password": password,
+        "getToken": True
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    print(f"Authenticating to: {url}")
+    response = requests.post(url, json=payload, headers=headers)
+
+    # Debug: print response if failed
+    if response.status_code != 200:
+        print(f"Response status: {response.status_code}")
+        print(f"Response body: {response.text}")
+
     response.raise_for_status()
     data = response.json()
 
