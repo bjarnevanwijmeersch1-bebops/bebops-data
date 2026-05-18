@@ -4,9 +4,12 @@ Sync sponsor pages to PiSignage via API.
 Creates weblink assets for each sponsor and manages a Sponsors playlist.
 """
 
+import imaplib
+import email
 import json
 import os
 import re
+import time
 import requests
 from pathlib import Path
 
@@ -34,6 +37,77 @@ SPONSOR_ASSET_PREFIX = "sponsor_"
 
 # Duration per sponsor slide (seconds)
 SLIDE_DURATION = 8
+
+# IMAP settings for reading OTP from email
+IMAP_HOST = os.environ.get("IMAP_HOST", "imap.gmail.com")
+IMAP_EMAIL = os.environ.get("IMAP_EMAIL", "")
+IMAP_PASSWORD = os.environ.get("IMAP_PASSWORD", "")
+
+
+def get_otp_from_email(max_wait: int = 60, check_interval: int = 5) -> str:
+    """Read OTP code from email using IMAP."""
+    if not IMAP_EMAIL or not IMAP_PASSWORD:
+        raise ValueError("IMAP_EMAIL and IMAP_PASSWORD must be set for OTP retrieval")
+
+    print(f"Connecting to {IMAP_HOST} to retrieve OTP...")
+
+    # Connect to IMAP server
+    mail = imaplib.IMAP4_SSL(IMAP_HOST)
+    mail.login(IMAP_EMAIL, IMAP_PASSWORD)
+    mail.select("INBOX")
+
+    start_time = time.time()
+    otp_code = None
+
+    while time.time() - start_time < max_wait:
+        # Search for recent emails from PiSignage
+        _, messages = mail.search(None, '(FROM "pisignage" UNSEEN)')
+        email_ids = messages[0].split()
+
+        if email_ids:
+            # Get the most recent email
+            latest_email_id = email_ids[-1]
+            _, msg_data = mail.fetch(latest_email_id, "(RFC822)")
+
+            for response_part in msg_data:
+                if isinstance(response_part, tuple):
+                    msg = email.message_from_bytes(response_part[1])
+                    subject = msg["subject"] or ""
+
+                    # Get email body
+                    body = ""
+                    if msg.is_multipart():
+                        for part in msg.walk():
+                            if part.get_content_type() == "text/plain":
+                                body = part.get_payload(decode=True).decode("utf-8", errors="ignore")
+                                break
+                            elif part.get_content_type() == "text/html":
+                                body = part.get_payload(decode=True).decode("utf-8", errors="ignore")
+                    else:
+                        body = msg.get_payload(decode=True).decode("utf-8", errors="ignore")
+
+                    # Look for OTP code (typically 6 digits)
+                    otp_match = re.search(r'\b(\d{6})\b', body)
+                    if otp_match:
+                        otp_code = otp_match.group(1)
+                        print(f"Found OTP code: {otp_code}")
+
+                        # Mark as read
+                        mail.store(latest_email_id, '+FLAGS', '\\Seen')
+                        break
+
+            if otp_code:
+                break
+
+        print(f"Waiting for OTP email... ({int(time.time() - start_time)}s)")
+        time.sleep(check_interval)
+
+    mail.logout()
+
+    if not otp_code:
+        raise ValueError(f"Could not find OTP code in email after {max_wait} seconds")
+
+    return otp_code
 
 
 def get_auth_token() -> str:
@@ -69,8 +143,13 @@ def get_auth_token() -> str:
     token = data.get("token")
 
     if response.status_code == 401 and not token:
-        # OTP required - check if there's an OTP code provided via environment
+        # OTP required - try to get it from email or environment
         otp_code = os.environ.get("PISIGNAGE_OTP", "")
+
+        if not otp_code and IMAP_EMAIL and IMAP_PASSWORD:
+            print("OTP required. Fetching from email...")
+            otp_code = get_otp_from_email()
+
         if otp_code:
             print(f"Retrying with OTP code...")
             payload["code"] = otp_code
@@ -80,7 +159,7 @@ def get_auth_token() -> str:
             data = response.json()
             token = data.get("token")
         else:
-            raise ValueError(f"OTP required. Message: {data.get('message', 'Unknown')}")
+            raise ValueError(f"OTP required but no IMAP credentials configured. Message: {data.get('message', 'Unknown')}")
 
     if not token:
         raise ValueError("Failed to get token from PiSignage API")

@@ -45,6 +45,9 @@ The folder ID is the part after `/folders/`: `1ABC123xyz...`
 | `PISIGNAGE_USERNAME` | Your PiSignage username (from URL: **username**.pisignage.com) |
 | `PISIGNAGE_EMAIL` | Your PiSignage login email |
 | `PISIGNAGE_PASSWORD` | Your PiSignage password |
+| `IMAP_HOST` | Email server (e.g., `imap.gmail.com`) |
+| `IMAP_EMAIL` | Email address that receives PiSignage OTP |
+| `IMAP_PASSWORD` | Email app password ([create one for Gmail](https://myaccount.google.com/apppasswords)) |
 
 ### Step 3: Upload Club Logo
 

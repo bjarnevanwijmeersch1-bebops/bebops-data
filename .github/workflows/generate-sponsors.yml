@@ -56,4 +56,7 @@ jobs:
           PISIGNAGE_USERNAME: ${{ secrets.PISIGNAGE_USERNAME }}
           PISIGNAGE_EMAIL: ${{ secrets.PISIGNAGE_EMAIL }}
           PISIGNAGE_PASSWORD: ${{ secrets.PISIGNAGE_PASSWORD }}
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_EMAIL: ${{ secrets.IMAP_EMAIL }}
+          IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
         run: python scripts/sync_pisignage.py
