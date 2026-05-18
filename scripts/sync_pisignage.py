@@ -29,7 +29,7 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 SPONSORS_HTML_DIR = PROJECT_ROOT / "frames" / "sponsors"
 
 # Playlist name for sponsors
-SPONSORS_PLAYLIST = "Sponsors"
+SPONSORS_PLAYLIST = "Bebops-Sponsors"
 
 # Prefix for sponsor link assets (to identify them)
 SPONSOR_ASSET_PREFIX = "sponsor_"
@@ -360,8 +360,8 @@ def main():
     # Add new sponsor weblinks
     for sponsor in local_sponsors:
         if sponsor["stem"] in to_add:
-            link_name = f"{sponsor['stem']}.link"
-            create_weblink(token, link_name, sponsor["url"], SLIDE_DURATION)
+            # Don't add .link - PiSignage adds it automatically
+            create_weblink(token, sponsor["stem"], sponsor["url"], SLIDE_DURATION)
 
     # Ensure playlist exists
     playlist = get_playlist(token, SPONSORS_PLAYLIST)
