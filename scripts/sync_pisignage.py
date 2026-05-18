@@ -372,14 +372,19 @@ def main():
     # Build list of all sponsor asset filenames for playlist
     # Re-fetch assets to get updated list
     updated_assets = get_existing_assets(token)
+    print(f"\nAll assets in PiSignage: {list(updated_assets.keys())}")
+
     sponsor_asset_names = sorted([
         name for name in updated_assets.keys()
         if name.startswith(SPONSOR_ASSET_PREFIX)
     ])
+    print(f"Sponsor assets found: {sponsor_asset_names}")
 
     # Update playlist with all sponsor assets
     if sponsor_asset_names:
         update_playlist_assets(token, SPONSORS_PLAYLIST, sponsor_asset_names)
+    else:
+        print("Warning: No sponsor assets found to add to playlist")
 
     print(f"\nSync complete! {len(sponsor_asset_names)} sponsors in playlist")
     return True
