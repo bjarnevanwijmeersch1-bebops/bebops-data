@@ -208,6 +208,9 @@ def get_existing_assets(token: str) -> dict:
     response.raise_for_status()
     data = response.json()
 
+    print(f"DEBUG: Raw API response keys: {data.keys() if isinstance(data, dict) else type(data)}")
+    print(f"DEBUG: Raw API response: {json.dumps(data, indent=2)[:1000]}")
+
     # Return dict of filename -> asset info
     assets = {}
     if "files" in data:
