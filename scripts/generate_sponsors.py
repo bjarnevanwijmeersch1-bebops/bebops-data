@@ -12,11 +12,10 @@ from pathlib import Path
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom
 
-# GitHub repo info for CDN URLs
+# GitHub Pages URL for serving HTML
 GITHUB_USER = "bjarnevanwijmeersch1-bebops"
 GITHUB_REPO = "bebops-data"
-GITHUB_BRANCH = "main"
-CDN_BASE_URL = f"https://cdn.jsdelivr.net/gh/{GITHUB_USER}/{GITHUB_REPO}@{GITHUB_BRANCH}"
+PAGES_BASE_URL = f"https://{GITHUB_USER}.github.io/{GITHUB_REPO}"
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
@@ -258,7 +257,7 @@ def generate_mrss_feed(sponsor_files: list, slide_duration: int = 8) -> str:
 
         # Media content with CDN URL
         media_content = SubElement(item, 'media:content')
-        media_content.set('url', f"{CDN_BASE_URL}/frames/sponsors/{filename}")
+        media_content.set('url', f"{PAGES_BASE_URL}/frames/sponsors/{filename}")
         media_content.set('duration', str(slide_duration))
         media_content.set('type', 'text/html')
 
@@ -598,7 +597,7 @@ def main():
         f.write(mrss_content)
     print(f"Generated: sponsors.mrss (MRSS feed for PiSignage)")
     print(f"\nMRSS feed URL for PiSignage:")
-    print(f"  {CDN_BASE_URL}/frames/sponsors.mrss")
+    print(f"  {PAGES_BASE_URL}/frames/sponsors.mrss")
 
     print(f"\nDone! Generated {len(generated_files)} individual pages + 1 carousel + 1 MRSS feed")
 

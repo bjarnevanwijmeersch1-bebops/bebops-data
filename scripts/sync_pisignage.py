@@ -18,11 +18,10 @@ from pathlib import Path
 PISIGNAGE_USERNAME = os.environ.get("PISIGNAGE_USERNAME", "")
 PISIGNAGE_API_BASE = f"https://{PISIGNAGE_USERNAME}.pisignage.com/api" if PISIGNAGE_USERNAME else ""
 
-# GitHub CDN base URL for sponsor pages
+# GitHub Pages base URL for sponsor pages
 GITHUB_USER = "bjarnevanwijmeersch1-bebops"
 GITHUB_REPO = "bebops-data"
-GITHUB_BRANCH = "main"
-CDN_BASE_URL = f"https://cdn.jsdelivr.net/gh/{GITHUB_USER}/{GITHUB_REPO}@{GITHUB_BRANCH}"
+PAGES_BASE_URL = f"https://{GITHUB_USER}.github.io/{GITHUB_REPO}"
 
 # Local paths
 SCRIPT_DIR = Path(__file__).parent
@@ -272,7 +271,7 @@ def get_local_sponsor_pages() -> list:
             pages.append({
                 "filename": f.name,
                 "stem": f.stem,
-                "url": f"{CDN_BASE_URL}/frames/sponsors/{f.name}"
+                "url": f"{PAGES_BASE_URL}/frames/sponsors/{f.name}"
             })
     return pages
 

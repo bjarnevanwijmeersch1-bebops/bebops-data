@@ -49,11 +49,22 @@ The folder ID is the part after `/folders/`: `1ABC123xyz...`
 | `IMAP_EMAIL` | Email address that receives PiSignage OTP |
 | `IMAP_PASSWORD` | Email app password ([create one for Gmail](https://myaccount.google.com/apppasswords)) |
 
-### Step 3: Upload Club Logo
+### Step 3: Enable GitHub Pages
+
+1. Go to your GitHub repository
+2. Click **Settings** → **Pages**
+3. Source: **Deploy from a branch**
+4. Branch: `main`, folder: `/ (root)`
+5. Click **Save**
+
+This serves the sponsor HTML pages at:
+`https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/frames/sponsors/`
+
+### Step 4: Upload Club Logo
 
 Make sure `images/logo.png` exists in the repository with your club logo.
 
-### Step 4: Test the Workflow
+### Step 5: Test the Workflow
 
 1. Go to **Actions** tab in GitHub
 2. Click **Generate Sponsor Pages**
@@ -61,7 +72,7 @@ Make sure `images/logo.png` exists in the repository with your club logo.
 4. Wait for it to complete
 5. Check `frames/sponsors_carousel.html` was generated
 
-### Step 5: Set Up PiSignage
+### Step 6: Set Up PiSignage
 
 The workflow automatically syncs sponsors to PiSignage via API:
 
