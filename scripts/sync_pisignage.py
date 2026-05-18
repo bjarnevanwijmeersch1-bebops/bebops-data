@@ -208,17 +208,20 @@ def get_existing_assets(token: str) -> dict:
     response.raise_for_status()
     data = response.json()
 
-    print(f"DEBUG: Raw API response keys: {data.keys() if isinstance(data, dict) else type(data)}")
-    print(f"DEBUG: Raw API response: {json.dumps(data, indent=2)[:1000]}")
-
     # Return dict of filename -> asset info
     assets = {}
-    if "files" in data:
-        for f in data["files"]:
-            if isinstance(f, dict):
-                assets[f.get("name", "")] = f
-            elif isinstance(f, str):
+
+    # Files are in data.data.files (list of filenames)
+    if "data" in data and "files" in data["data"]:
+        for f in data["data"]["files"]:
+            if isinstance(f, str):
                 assets[f] = {"name": f}
+
+    # Additional info is in data.data.dbdata
+    if "data" in data and "dbdata" in data["data"]:
+        for item in data["data"]["dbdata"]:
+            if isinstance(item, dict) and "name" in item:
+                assets[item["name"]] = item
 
     return assets
 
