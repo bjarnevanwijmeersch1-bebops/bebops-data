@@ -285,14 +285,18 @@ def delete_asset(token: str, filename: str) -> bool:
 
 def update_playlist_assets(token: str, playlist_name: str, assets: list) -> dict:
     """Update the assets in a playlist."""
+    payload = {
+        "playlist": playlist_name,
+        "assets": assets
+    }
+    print(f"DEBUG: Updating playlist with payload: {json.dumps(payload)}")
+
     response = requests.post(
         f"{PISIGNAGE_API_BASE}/playlistfiles",
         params={"token": token},
-        json={
-            "playlist": playlist_name,
-            "assets": assets
-        }
+        json=payload
     )
+    print(f"DEBUG: Playlist update response: {response.status_code} - {response.text}")
     response.raise_for_status()
     print(f"Updated playlist {playlist_name} with {len(assets)} assets")
     return response.json()
