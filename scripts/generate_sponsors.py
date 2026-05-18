@@ -2,20 +2,11 @@
 """
 Generate sponsor HTML pages from images in the sponsors folder.
 Each image becomes a self-contained HTML page with embedded Base64.
-Also generates an MRSS feed for PiSignage integration.
 """
 
 import base64
-import os
 import re
 from pathlib import Path
-from xml.etree.ElementTree import Element, SubElement, tostring
-from xml.dom import minidom
-
-# GitHub Pages URL for serving HTML
-GITHUB_USER = "bjarnevanwijmeersch1-bebops"
-GITHUB_REPO = "bebops-data"
-PAGES_BASE_URL = f"https://{GITHUB_USER}.github.io/{GITHUB_REPO}"
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
@@ -232,296 +223,6 @@ def generate_sponsor_html(sponsor_name: str, sponsor_image_base64: str, logo_bas
 '''
 
 
-def generate_mrss_feed(sponsor_files: list, slide_duration: int = 8) -> str:
-    """Generate MRSS feed for PiSignage."""
-    # Create root RSS element with media namespace
-    rss = Element('rss')
-    rss.set('version', '2.0')
-    rss.set('xmlns:media', 'http://search.yahoo.com/mrss/')
-
-    channel = SubElement(rss, 'channel')
-
-    # Channel metadata
-    title = SubElement(channel, 'title')
-    title.text = 'Bebops Sponsors'
-
-    description = SubElement(channel, 'description')
-    description.text = 'Sponsor slideshow for Bebops Baseball & Softball Club'
-
-    # Add each sponsor as an item
-    for filename, sponsor_name in sponsor_files:
-        item = SubElement(channel, 'item')
-
-        item_title = SubElement(item, 'title')
-        item_title.text = sponsor_name
-
-        # Media content with CDN URL
-        media_content = SubElement(item, 'media:content')
-        media_content.set('url', f"{PAGES_BASE_URL}/frames/sponsors/{filename}")
-        media_content.set('duration', str(slide_duration))
-        media_content.set('type', 'text/html')
-
-    # Pretty print XML
-    xml_string = tostring(rss, encoding='unicode')
-    pretty_xml = minidom.parseString(xml_string).toprettyxml(indent='  ')
-    # Remove extra blank lines
-    pretty_xml = '\n'.join(line for line in pretty_xml.split('\n') if line.strip())
-    return pretty_xml
-
-
-def generate_carousel_html(sponsors: list, logo_base64: str, slide_duration: int = 8) -> str:
-    """Generate a single HTML file that cycles through all sponsors."""
-    sponsors_json = ",\n        ".join([
-        f'{{ name: "{s["name"]}", image: "{s["image"]}" }}'
-        for s in sponsors
-    ])
-
-    return f'''<!doctype html>
-<html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sponsors - Bebops Zottegem</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {{
-        --primary-color: #c41e3a;
-        --secondary-color: #ffffff;
-        --accent-color: #1a1a1a;
-        --text-light: #ffffff;
-        --slide-duration: {slide_duration}s;
-      }}
-
-      * {{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }}
-
-      html, body {{
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        font-family: "Open Sans", sans-serif;
-      }}
-
-      .header-overlay {{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100px;
-        background: linear-gradient(135deg, var(--primary-color) 0%, #8b0000 100%);
-        display: flex;
-        align-items: center;
-        padding: 0 50px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-      }}
-
-      .header-overlay::after {{
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: var(--secondary-color);
-      }}
-
-      .logo-container {{
-        display: flex;
-        align-items: center;
-        gap: 25px;
-      }}
-
-      .club-logo {{
-        height: 70px;
-        width: auto;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-      }}
-
-      .club-text {{
-        display: flex;
-        flex-direction: column;
-      }}
-
-      .club-name {{
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 3rem;
-        color: var(--text-light);
-        letter-spacing: 3px;
-        line-height: 1;
-      }}
-
-      .club-subtitle {{
-        font-family: "Open Sans", sans-serif;
-        font-size: 1.1rem;
-        color: var(--secondary-color);
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-top: 5px;
-        opacity: 0.9;
-      }}
-
-      .frame {{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 140px 60px 80px 60px;
-        background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
-      }}
-
-      .section-title {{
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        margin-bottom: 40px;
-      }}
-
-      .sponsor-container {{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 1;
-        width: 100%;
-        max-width: 80%;
-        position: relative;
-      }}
-
-      .sponsor-slide {{
-        position: absolute;
-        opacity: 0;
-        transition: opacity 0.8s ease-in-out;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-      }}
-
-      .sponsor-slide.active {{
-        opacity: 1;
-      }}
-
-      .sponsor-image {{
-        max-width: 100%;
-        max-height: 55vh;
-        object-fit: contain;
-        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
-      }}
-
-      /* Progress bar */
-      .progress-container {{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 6px;
-        background: rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-      }}
-
-      .progress-bar {{
-        height: 100%;
-        background: var(--primary-color);
-        width: 0%;
-        animation: progress var(--slide-duration) linear infinite;
-      }}
-
-      @keyframes progress {{
-        from {{ width: 0%; }}
-        to {{ width: 100%; }}
-      }}
-
-      /* Slide counter */
-      .slide-counter {{
-        position: fixed;
-        bottom: 20px;
-        right: 30px;
-        font-family: "Bebas Neue", sans-serif;
-        font-size: 1.2rem;
-        color: var(--accent-color);
-        opacity: 0.5;
-      }}
-    </style>
-  </head>
-  <body>
-    <div class="header-overlay">
-      <div class="logo-container">
-        <img src="{logo_base64}" alt="Bebops" class="club-logo" />
-        <div class="club-text">
-          <span class="club-name">Bebops</span>
-          <span class="club-subtitle">Baseball- & Softballclub</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="frame">
-      <div class="section-title">Met dank aan onze Sponsors</div>
-      <div class="sponsor-container" id="sponsorContainer"></div>
-    </div>
-
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-
-    <div class="slide-counter" id="slideCounter"></div>
-
-    <script>
-      const sponsors = [
-        {sponsors_json}
-      ];
-
-      let currentIndex = 0;
-      const container = document.getElementById('sponsorContainer');
-      const counter = document.getElementById('slideCounter');
-      const progressBar = document.getElementById('progressBar');
-      const slideDuration = {slide_duration} * 1000;
-
-      // Create slides
-      sponsors.forEach((sponsor, index) => {{
-        const slide = document.createElement('div');
-        slide.className = 'sponsor-slide' + (index === 0 ? ' active' : '');
-        slide.innerHTML = `<img src="${{sponsor.image}}" alt="${{sponsor.name}}" class="sponsor-image">`;
-        container.appendChild(slide);
-      }});
-
-      function updateCounter() {{
-        counter.textContent = `${{currentIndex + 1}} / ${{sponsors.length}}`;
-      }}
-
-      function nextSlide() {{
-        const slides = document.querySelectorAll('.sponsor-slide');
-        slides[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % sponsors.length;
-        slides[currentIndex].classList.add('active');
-        updateCounter();
-
-        // Reset progress bar animation
-        progressBar.style.animation = 'none';
-        progressBar.offsetHeight; // Trigger reflow
-        progressBar.style.animation = `progress ${{slideDuration/1000}}s linear infinite`;
-      }}
-
-      updateCounter();
-      setInterval(nextSlide, slideDuration);
-    </script>
-  </body>
-</html>
-'''
-
-
 def main():
     """Main function to generate all sponsor pages."""
     # Ensure output directory exists
@@ -556,20 +257,11 @@ def main():
 
     print(f"Found {len(sponsor_images)} sponsor images")
 
-    # Collect all sponsors for carousel
-    all_sponsors = []
-
     # Generate HTML for each sponsor
-    generated_files = []  # List of (filename, sponsor_name) tuples for MRSS
+    generated_files = []
     for image_path in sorted(sponsor_images):
         sponsor_name = get_sponsor_name(image_path.name)
         sponsor_base64 = image_to_base64(image_path)
-
-        # Add to carousel list
-        all_sponsors.append({
-            "name": sponsor_name,
-            "image": sponsor_base64
-        })
 
         # Create safe filename
         safe_filename = re.sub(r"[^a-zA-Z0-9_-]", "_", image_path.stem)
@@ -580,35 +272,18 @@ def main():
         with open(output_file, "w", encoding="utf-8") as f:
             f.write(html_content)
 
-        generated_files.append((output_file.name, sponsor_name))
+        generated_files.append(output_file.name)
         print(f"Generated: {output_file.name} ({sponsor_name})")
 
-    # Generate carousel HTML with all sponsors
-    carousel_file = PROJECT_ROOT / "frames" / "sponsors_carousel.html"
-    carousel_html = generate_carousel_html(all_sponsors, logo_base64, slide_duration=8)
-    with open(carousel_file, "w", encoding="utf-8") as f:
-        f.write(carousel_html)
-    print(f"\nGenerated: sponsors_carousel.html (all {len(all_sponsors)} sponsors in one file)")
-
-    # Generate MRSS feed for PiSignage
-    mrss_file = PROJECT_ROOT / "frames" / "sponsors.mrss"
-    mrss_content = generate_mrss_feed(generated_files, slide_duration=8)
-    with open(mrss_file, "w", encoding="utf-8") as f:
-        f.write(mrss_content)
-    print(f"Generated: sponsors.mrss (MRSS feed for PiSignage)")
-    print(f"\nMRSS feed URL for PiSignage:")
-    print(f"  {PAGES_BASE_URL}/frames/sponsors.mrss")
-
     # Clean up old HTML files that no longer have sponsor images
-    generated_filenames = {f[0] for f in generated_files}
-    if OUTPUT_DIR.exists():
-        for html_file in OUTPUT_DIR.iterdir():
-            if html_file.is_file() and html_file.suffix == ".html":
-                if html_file.name not in generated_filenames:
-                    print(f"Removing old sponsor page: {html_file.name}")
-                    html_file.unlink()
+    generated_filenames = set(generated_files)
+    for html_file in OUTPUT_DIR.iterdir():
+        if html_file.is_file() and html_file.suffix == ".html":
+            if html_file.name not in generated_filenames:
+                print(f"Removing old sponsor page: {html_file.name}")
+                html_file.unlink()
 
-    print(f"\nDone! Generated {len(generated_files)} individual pages + 1 carousel + 1 MRSS feed")
+    print(f"\nDone! Generated {len(generated_files)} sponsor pages")
 
 
 if __name__ == "__main__":
