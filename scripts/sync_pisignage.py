@@ -235,7 +235,9 @@ def get_playlist(token: str, playlist_name: str) -> dict:
     if response.status_code == 404:
         return None
     response.raise_for_status()
-    return response.json()
+    data = response.json()
+    print(f"DEBUG: Playlist data: {json.dumps(data, indent=2)[:2000]}")
+    return data
 
 
 def create_playlist(token: str, playlist_name: str) -> dict:
@@ -283,20 +285,34 @@ def delete_asset(token: str, filename: str) -> bool:
     return True
 
 
-def update_playlist_assets(token: str, playlist_name: str, assets: list) -> dict:
-    """Update the assets in a playlist."""
+def update_playlist_assets(token: str, playlist_name: str, asset_filenames: list, duration: int = 8) -> dict:
+    """Update the playlist with assets."""
+    # Build assets array with proper object structure
+    assets = []
+    for filename in asset_filenames:
+        assets.append({
+            "filename": filename,
+            "duration": duration,
+            "isVideo": False,
+            "selected": True,
+            "fullscreen": True,
+            "option": {
+                "main": True
+            }
+        })
+
     payload = {
-        "playlist": playlist_name,
+        "name": playlist_name,
         "assets": assets
     }
-    print(f"DEBUG: Updating playlist with payload: {json.dumps(payload)}")
+    print(f"DEBUG: Updating playlist with {len(assets)} assets")
 
     response = requests.post(
-        f"{PISIGNAGE_API_BASE}/playlistfiles",
+        f"{PISIGNAGE_API_BASE}/playlists/{playlist_name}",
         params={"token": token},
         json=payload
     )
-    print(f"DEBUG: Playlist update response: {response.status_code} - {response.text}")
+    print(f"DEBUG: Playlist update response: {response.status_code} - {response.text[:500]}")
     response.raise_for_status()
     print(f"Updated playlist {playlist_name} with {len(assets)} assets")
     return response.json()
@@ -393,6 +409,10 @@ def main():
     # Update playlist with all sponsor assets
     if sponsor_asset_names:
         update_playlist_assets(token, SPONSORS_PLAYLIST, sponsor_asset_names)
+
+        # Fetch playlist again to verify
+        print("\nVerifying playlist contents...")
+        get_playlist(token, SPONSORS_PLAYLIST)
     else:
         print("Warning: No sponsor assets found to add to playlist")
 
