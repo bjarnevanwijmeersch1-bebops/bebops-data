@@ -7,9 +7,5 @@
       <title>Brouwerij Roman</title>
       <media:content url="https://cdn.jsdelivr.net/gh/bjarnevanwijmeersch1-bebops/bebops-data@main/frames/sponsors/sponsor_Brouwerij_Roman.html" duration="8" type="text/html"/>
     </item>
-    <item>
-      <title>De Platte Batterie</title>
-      <media:content url="https://cdn.jsdelivr.net/gh/bjarnevanwijmeersch1-bebops/bebops-data@main/frames/sponsors/sponsor_De-Platte-Batterie-Logo-RGB.html" duration="8" type="text/html"/>
-    </item>
   </channel>
 </rss>
