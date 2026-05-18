@@ -60,15 +60,28 @@ def get_auth_token() -> str:
     print(f"Authenticating to: {url}")
     response = requests.post(url, json=payload, headers=headers)
 
-    # Debug: print response if failed
-    if response.status_code != 200:
-        print(f"Response status: {response.status_code}")
-        print(f"Response body: {response.text}")
+    print(f"Response status: {response.status_code}")
+    print(f"Response body: {response.text}")
 
-    response.raise_for_status()
     data = response.json()
 
+    # Check if we got a token (even on 401, sometimes token is included)
     token = data.get("token")
+
+    if response.status_code == 401 and not token:
+        # OTP required - check if there's an OTP code provided via environment
+        otp_code = os.environ.get("PISIGNAGE_OTP", "")
+        if otp_code:
+            print(f"Retrying with OTP code...")
+            payload["code"] = otp_code
+            response = requests.post(url, json=payload, headers=headers)
+            print(f"Response status: {response.status_code}")
+            print(f"Response body: {response.text}")
+            data = response.json()
+            token = data.get("token")
+        else:
+            raise ValueError(f"OTP required. Message: {data.get('message', 'Unknown')}")
+
     if not token:
         raise ValueError("Failed to get token from PiSignage API")
 
