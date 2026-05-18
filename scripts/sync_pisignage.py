@@ -43,12 +43,41 @@ IMAP_EMAIL = os.environ.get("IMAP_EMAIL", "")
 IMAP_PASSWORD = os.environ.get("IMAP_PASSWORD", "")
 
 
+def mark_old_otp_emails_as_read():
+    """Mark all existing PiSignage OTP emails as read so we only find new ones."""
+    if not IMAP_EMAIL or not IMAP_PASSWORD:
+        return
+
+    try:
+        mail = imaplib.IMAP4_SSL(IMAP_HOST)
+        mail.login(IMAP_EMAIL, IMAP_PASSWORD)
+        mail.select("INBOX")
+
+        # Mark all unread PiSignage emails as read
+        _, messages = mail.search(None, '(FROM "pisignage" UNSEEN)')
+        email_ids = messages[0].split()
+
+        for email_id in email_ids:
+            mail.store(email_id, '+FLAGS', '\\Seen')
+
+        if email_ids:
+            print(f"Marked {len(email_ids)} old PiSignage emails as read")
+
+        mail.logout()
+    except Exception as e:
+        print(f"Warning: Could not mark old emails as read: {e}")
+
+
 def get_otp_from_email(max_wait: int = 60, check_interval: int = 5) -> str:
-    """Read OTP code from email using IMAP."""
+    """Read OTP code from email using IMAP. Only finds NEW emails."""
     if not IMAP_EMAIL or not IMAP_PASSWORD:
         raise ValueError("IMAP_EMAIL and IMAP_PASSWORD must be set for OTP retrieval")
 
     print(f"Connecting to {IMAP_HOST} to retrieve OTP...")
+    print("Waiting for new OTP email to arrive...")
+
+    # Give the email a moment to arrive
+    time.sleep(3)
 
     # Connect to IMAP server
     mail = imaplib.IMAP4_SSL(IMAP_HOST)
@@ -59,7 +88,7 @@ def get_otp_from_email(max_wait: int = 60, check_interval: int = 5) -> str:
     otp_code = None
 
     while time.time() - start_time < max_wait:
-        # Search for recent emails from PiSignage
+        # Search for UNREAD emails from PiSignage
         _, messages = mail.search(None, '(FROM "pisignage" UNSEEN)')
         email_ids = messages[0].split()
 
@@ -111,18 +140,21 @@ def get_otp_from_email(max_wait: int = 60, check_interval: int = 5) -> str:
 
 def get_auth_token() -> str:
     """Get authentication token from PiSignage API."""
-    email = os.environ.get("PISIGNAGE_EMAIL", "")
+    pisignage_email = os.environ.get("PISIGNAGE_EMAIL", "")
     password = os.environ.get("PISIGNAGE_PASSWORD", "")
 
     if not PISIGNAGE_USERNAME:
         raise ValueError("PISIGNAGE_USERNAME must be set")
 
-    if not email or not password:
+    if not pisignage_email or not password:
         raise ValueError("PISIGNAGE_EMAIL and PISIGNAGE_PASSWORD must be set")
+
+    # Mark old OTP emails as read BEFORE requesting new OTP
+    mark_old_otp_emails_as_read()
 
     url = f"{PISIGNAGE_API_BASE}/session"
     payload = {
-        "email": email,
+        "email": pisignage_email,
         "password": password,
         "getToken": True
     }
