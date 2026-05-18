@@ -360,8 +360,9 @@ def main():
     # Add new sponsor weblinks
     for sponsor in local_sponsors:
         if sponsor["stem"] in to_add:
-            # Don't add .link - PiSignage adds it automatically
-            create_weblink(token, sponsor["stem"], sponsor["url"], SLIDE_DURATION)
+            # Add trailing dot - PiSignage appends "link" to make ".link"
+            link_name = f"{sponsor['stem']}."
+            create_weblink(token, link_name, sponsor["url"], SLIDE_DURATION)
 
     # Ensure playlist exists
     playlist = get_playlist(token, SPONSORS_PLAYLIST)

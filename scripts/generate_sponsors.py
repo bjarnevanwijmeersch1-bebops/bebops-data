@@ -599,6 +599,15 @@ def main():
     print(f"\nMRSS feed URL for PiSignage:")
     print(f"  {PAGES_BASE_URL}/frames/sponsors.mrss")
 
+    # Clean up old HTML files that no longer have sponsor images
+    generated_filenames = {f[0] for f in generated_files}
+    if OUTPUT_DIR.exists():
+        for html_file in OUTPUT_DIR.iterdir():
+            if html_file.is_file() and html_file.suffix == ".html":
+                if html_file.name not in generated_filenames:
+                    print(f"Removing old sponsor page: {html_file.name}")
+                    html_file.unlink()
+
     print(f"\nDone! Generated {len(generated_files)} individual pages + 1 carousel + 1 MRSS feed")
 
 
