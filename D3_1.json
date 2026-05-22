@@ -1,0 +1,52 @@
+[
+    {
+        "#": 1,
+        "Team": "",
+        "Team.1": "LIE  Liège Rebels 1",
+        "W": 6,
+        "L": 0,
+        "T": 0,
+        "PCT": 1.0,
+        "GB": 0.0
+    },
+    {
+        "#": 2,
+        "Team": "",
+        "Team.1": "AND  Andenne Black Bears",
+        "W": 5,
+        "L": 1,
+        "T": 0,
+        "PCT": 0.833,
+        "GB": 1.0
+    },
+    {
+        "#": 3,
+        "Team": "",
+        "Team.1": "TOU  Tournai Celtics",
+        "W": 1,
+        "L": 4,
+        "T": 1,
+        "PCT": 0.25,
+        "GB": 4.5
+    },
+    {
+        "#": 4,
+        "Team": "",
+        "Team.1": "MSG  Mont-Saint-Guibert Phoenix 3",
+        "W": 1,
+        "L": 4,
+        "T": 0,
+        "PCT": 0.2,
+        "GB": 4.5
+    },
+    {
+        "#": 5,
+        "Team": "",
+        "Team.1": "BRI  Braine Black Rickers 2",
+        "W": 0,
+        "L": 4,
+        "T": 1,
+        "PCT": 0.1,
+        "GB": 5.0
+    }
+]
