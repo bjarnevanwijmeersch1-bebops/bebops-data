@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests gdown
+        run: pip install requests gdown Pillow
 
       - name: Download sponsors from Google Drive
         env:

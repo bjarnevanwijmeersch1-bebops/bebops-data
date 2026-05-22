@@ -5,8 +5,11 @@ Each club logo becomes a self-contained HTML welcome page with embedded Base64.
 """
 
 import base64
+import io
 import re
 from pathlib import Path
+
+from PIL import Image
 
 # Paths
 SCRIPT_DIR = Path(__file__).parent
@@ -18,6 +21,11 @@ LOGO_PATH = IMAGES_DIR / "logo.png"
 
 # Supported image extensions
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
+
+# Image optimization settings
+MAX_IMAGE_WIDTH = 1200
+MAX_IMAGE_HEIGHT = 800
+JPEG_QUALITY = 85
 
 
 def get_mime_type(extension: str) -> str:
@@ -33,11 +41,55 @@ def get_mime_type(extension: str) -> str:
     return mime_types.get(extension.lower(), "image/png")
 
 
-def image_to_base64(image_path: Path) -> str:
-    """Convert image file to Base64 data URL."""
-    with open(image_path, "rb") as f:
-        data = base64.b64encode(f.read()).decode("utf-8")
-    mime_type = get_mime_type(image_path.suffix)
+def optimize_image(image_path: Path) -> tuple[bytes, str]:
+    """
+    Optimize image: resize if too large, compress, convert to efficient format.
+    Returns (image_bytes, mime_type).
+    """
+    # SVG files don't need optimization
+    if image_path.suffix.lower() == ".svg":
+        with open(image_path, "rb") as f:
+            return f.read(), "image/svg+xml"
+
+    # Open image with PIL
+    img = Image.open(image_path)
+
+    # Convert to RGB if necessary (for JPEG output)
+    if img.mode in ("RGBA", "P"):
+        # Keep PNG for images with transparency
+        has_transparency = img.mode == "RGBA" or (img.mode == "P" and "transparency" in img.info)
+        if has_transparency:
+            # Resize if needed
+            if img.width > MAX_IMAGE_WIDTH or img.height > MAX_IMAGE_HEIGHT:
+                img.thumbnail((MAX_IMAGE_WIDTH, MAX_IMAGE_HEIGHT), Image.Resampling.LANCZOS)
+            # Save as PNG
+            buffer = io.BytesIO()
+            img.save(buffer, format="PNG", optimize=True)
+            return buffer.getvalue(), "image/png"
+        else:
+            img = img.convert("RGB")
+    elif img.mode != "RGB":
+        img = img.convert("RGB")
+
+    # Resize if too large
+    if img.width > MAX_IMAGE_WIDTH or img.height > MAX_IMAGE_HEIGHT:
+        img.thumbnail((MAX_IMAGE_WIDTH, MAX_IMAGE_HEIGHT), Image.Resampling.LANCZOS)
+
+    # Save as optimized JPEG
+    buffer = io.BytesIO()
+    img.save(buffer, format="JPEG", quality=JPEG_QUALITY, optimize=True)
+    return buffer.getvalue(), "image/jpeg"
+
+
+def image_to_base64(image_path: Path, optimize: bool = True) -> str:
+    """Convert image file to Base64 data URL, with optional optimization."""
+    if optimize and image_path.suffix.lower() != ".svg":
+        data_bytes, mime_type = optimize_image(image_path)
+        data = base64.b64encode(data_bytes).decode("utf-8")
+    else:
+        with open(image_path, "rb") as f:
+            data = base64.b64encode(f.read()).decode("utf-8")
+        mime_type = get_mime_type(image_path.suffix)
     return f"data:{mime_type};base64,{data}"
 
 
@@ -59,6 +111,7 @@ def generate_welcome_html(club_name: str, club_logo_base64: str, bebops_logo_bas
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" as="image" href="{club_logo_base64}" />
     <title>Welkom {club_name} - Bebops Zottegem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -86,7 +139,9 @@ def generate_welcome_html(club_name: str, club_logo_base64: str, bebops_logo_bas
         height: 100%;
         overflow: hidden;
         font-family: "Open Sans", sans-serif;
+        background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
       }}
+
 
       .header-overlay {{
         position: fixed;
@@ -155,7 +210,6 @@ def generate_welcome_html(club_name: str, club_logo_base64: str, bebops_logo_bas
         justify-content: center;
         align-items: center;
         padding: 140px 60px 60px 60px;
-        background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
       }}
 
       .welcome-title {{
@@ -190,6 +244,12 @@ def generate_welcome_html(club_name: str, club_logo_base64: str, bebops_logo_bas
         max-height: 45vh;
         object-fit: contain;
         filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+        opacity: 0;
+        transition: opacity 0.4s ease-in;
+      }}
+
+      .visitor-logo.loaded {{
+        opacity: 1;
       }}
     </style>
   </head>
@@ -216,9 +276,26 @@ def generate_welcome_html(club_name: str, club_logo_base64: str, bebops_logo_bas
           src="{club_logo_base64}"
           alt="{club_name}"
           class="visitor-logo"
+          id="visitorLogo"
         />
       </div>
     </div>
+
+    <script>
+      // Fade in visitor logo when loaded
+      const img = document.getElementById('visitorLogo');
+
+      function showImage() {{
+        img.classList.add('loaded');
+      }}
+
+      if (img.complete) {{
+        showImage();
+      }} else {{
+        img.onload = showImage;
+        img.onerror = showImage;
+      }}
+    </script>
   </body>
 </html>
 '''
