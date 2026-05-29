@@ -2,8 +2,9 @@ name: Bebops Data Scraper
 
 on:
   schedule:
-    - cron: '0 3 * * *' # Elke nacht om 3:00 uur
-  workflow_dispatch: # Knop om handmatig te starten
+    - cron: '0 3 * * *' # Daily at 3:00 AM UTC
+    - cron: '0 8-17 * * 6,0' # Every hour 10:00-19:00 Belgium time (08:00-17:00 UTC) on Sat & Sun during baseball season
+  workflow_dispatch: # Manual trigger button
 
 jobs:
   scrape:
@@ -26,10 +27,32 @@ jobs:
       - name: Generate Ranking Pages
         run: python scripts/generate_ranking_pages.py
 
+      - name: Check for changes
+        id: changes
+        run: |
+          git add -A
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Sync Rankings to PiSignage
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          PISIGNAGE_USERNAME: ${{ secrets.PISIGNAGE_USERNAME }}
+          PISIGNAGE_EMAIL: ${{ secrets.PISIGNAGE_EMAIL }}
+          PISIGNAGE_PASSWORD: ${{ secrets.PISIGNAGE_PASSWORD }}
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_EMAIL: ${{ secrets.IMAP_EMAIL }}
+          IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
+        run: python scripts/sync_rankings_pisignage.py
+
       - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
         run: |
           git config --global user.name "BebopsBot"
           git config --global user.email "bot@zottegembebops.be"
-          git add -A
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update baseball data $(date)" && git push)
+          git commit -m "Update baseball data $(date)"
+          git push
 

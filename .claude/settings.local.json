@@ -3,7 +3,8 @@
     "allow": [
       "Bash(python scripts/scraper.py:*)",
       "Bash(python scripts/generate_ranking_pages.py:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(git add:*)"
     ]
   }
 }
