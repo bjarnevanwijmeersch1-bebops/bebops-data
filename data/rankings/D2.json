@@ -1,7 +1,7 @@
 [
     {
         "#": 1,
-        "Team": "",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Gent_Knights.png",
         "Team.1": "GEN  Gent Knights",
         "W": 6,
         "L": 0,
@@ -11,7 +11,7 @@
     },
     {
         "#": 2,
-        "Team": "",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 7,
         "L": 1,
@@ -21,7 +21,7 @@
     },
     {
         "#": 3,
-        "Team": "",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 3,
         "L": 4,
@@ -31,7 +31,7 @@
     },
     {
         "#": 4,
-        "Team": "",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Borgerhout_Squirrels.png",
         "Team.1": "BOR  Borgerhout Squirrels 2",
         "W": 2,
         "L": 4,
@@ -41,7 +41,7 @@
     },
     {
         "#": 5,
-        "Team": "",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brasschaat_Braves.jpg",
         "Team.1": "BRA  Brasschaat Braves 2",
         "W": 2,
         "L": 5,
@@ -51,7 +51,7 @@
     },
     {
         "#": 6,
-        "Team": "",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/WBA_Foxes.png",
         "Team.1": "WBA  WBA Foxes",
         "W": 1,
         "L": 7,

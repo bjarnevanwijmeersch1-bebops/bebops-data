@@ -23,6 +23,9 @@ jobs:
       - name: Run Scraper
         run: python scripts/scraper.py
 
+      - name: Generate Ranking Pages
+        run: python scripts/generate_ranking_pages.py
+
       - name: Commit and push changes
         run: |
           git config --global user.name "BebopsBot"
