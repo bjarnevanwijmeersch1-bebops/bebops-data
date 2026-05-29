@@ -111,4 +111,7 @@ def scrape_tables(url, name):
 
 # Je ploegen
 scrape_tables("https://www.baseballsoftball.be/en/events/2026-baseball-d2-2026/standings", "D2")
-scrape_tables("https://www.baseballsoftball.be/en/events/2026-baseball-d3-2026/standings", "D3")
+scrape_tables("https://www.baseballsoftball.be/en/events/2026-baseball-d3-2026/standings", "D3"),
+scrape_tables("https://www.baseballsoftball.be/en/events/2026-baseball-u15-2026/standings", "U15"),
+scrape_tables("https://www.baseballsoftball.be/en/events/2026-baseball-u12-2026/standings", "U12"),
+scrape_tables("https://www.baseballsoftball.be/en/events/2026-softball-ladies-d3/standings", "SD3")

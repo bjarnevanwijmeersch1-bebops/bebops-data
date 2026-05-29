@@ -316,7 +316,10 @@ def generate_ranking_pages():
     """Generate ranking HTML pages for all divisions."""
     divisions = [
         ("Division 2", "d2"),
-        ("Division 3", "d3")
+        ("Division 3", "d3"),
+        ("U15", "u15"),
+        ("U12", "u12"),
+        ("Softball Ladies D3", "sd3")
     ]
 
     # Ensure rankings directory exists
