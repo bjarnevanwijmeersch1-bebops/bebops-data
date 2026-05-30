@@ -11,23 +11,23 @@
     },
     {
         "#": 2,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
+        "Team.1": "MER  Merchtem Cats 2",
+        "W": 5,
+        "L": 1,
+        "T": 0,
+        "PCT": 0.833,
+        "GB": 1.0
+    },
+    {
+        "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
         "Team.1": "GRE  Royal Greys 1",
         "W": 4,
-        "L": 1,
+        "L": 2,
         "T": 0,
-        "PCT": 0.8,
-        "GB": 1.5
-    },
-    {
-        "#": 2,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
-        "Team.1": "MER  Merchtem Cats 2",
-        "W": 4,
-        "L": 1,
-        "T": 0,
-        "PCT": 0.8,
-        "GB": 1.5
+        "PCT": 0.667,
+        "GB": 2.0
     },
     {
         "#": 4,
