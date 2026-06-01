@@ -31,23 +31,23 @@
     },
     {
         "#": 4,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Hoboken_Pioneers.png",
+        "Team.1": "HOB  Hoboken Pioneers 2",
+        "W": 3,
+        "L": 5,
+        "T": 0,
+        "PCT": 0.375,
+        "GB": 5.0
+    },
+    {
+        "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Leuven_Twins.png",
         "Team.1": "LEU  Leuven Twins",
         "W": 3,
-        "L": 4,
-        "T": 0,
-        "PCT": 0.429,
-        "GB": 4.5
-    },
-    {
-        "#": 5,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Hoboken_Pioneers.png",
-        "Team.1": "HOB  Hoboken Pioneers 2",
-        "W": 2,
         "L": 5,
         "T": 0,
-        "PCT": 0.286,
-        "GB": 5.5
+        "PCT": 0.375,
+        "GB": 5.0
     },
     {
         "#": 6,
