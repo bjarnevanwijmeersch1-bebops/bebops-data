@@ -3,7 +3,7 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
         "Team.1": "GRE  Royal Greys",
-        "W": 8,
+        "W": 9,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
@@ -13,10 +13,10 @@
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops 2",
-        "W": 5,
+        "W": 6,
         "L": 4,
         "T": 0,
-        "PCT": 0.556,
+        "PCT": 0.6,
         "GB": 3.5
     },
     {
@@ -27,7 +27,7 @@
         "L": 3,
         "T": 0,
         "PCT": 0.5,
-        "GB": 4.0
+        "GB": 4.5
     },
     {
         "#": 4,
@@ -37,26 +37,26 @@
         "L": 5,
         "T": 0,
         "PCT": 0.375,
-        "GB": 5.0
+        "GB": 5.5
     },
     {
-        "#": 4,
+        "#": 5,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Leuven_Twins.png",
         "Team.1": "LEU  Leuven Twins",
         "W": 3,
-        "L": 5,
+        "L": 6,
         "T": 0,
-        "PCT": 0.375,
-        "GB": 5.0
+        "PCT": 0.333,
+        "GB": 6.0
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brussels_Kangaroos.png",
         "Team.1": "BRU  Brussels Kangaroos 3",
         "W": 2,
-        "L": 7,
+        "L": 8,
         "T": 0,
-        "PCT": 0.222,
-        "GB": 6.5
+        "PCT": 0.2,
+        "GB": 7.5
     }
 ]
