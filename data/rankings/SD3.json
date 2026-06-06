@@ -23,26 +23,26 @@
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
         "Team.1": "GRE  Royal Greys 1",
-        "W": 4,
+        "W": 5,
         "L": 2,
         "T": 0,
-        "PCT": 0.667,
-        "GB": 2.0
+        "PCT": 0.714,
+        "GB": 1.5
+    },
+    {
+        "#": 4,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Beveren_Lions.png",
+        "Team.1": "BEV  Beveren Lions 2",
+        "W": 2,
+        "L": 5,
+        "T": 0,
+        "PCT": 0.286,
+        "GB": 4.5
     },
     {
         "#": 4,
         "Team": "",
         "Team.1": "GEN  Wielsbeke-Gent Grietjes",
-        "W": 2,
-        "L": 4,
-        "T": 0,
-        "PCT": 0.333,
-        "GB": 4.0
-    },
-    {
-        "#": 5,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Beveren_Lions.png",
-        "Team.1": "BEV  Beveren Lions 2",
         "W": 2,
         "L": 5,
         "T": 0,
