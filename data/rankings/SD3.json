@@ -7,7 +7,7 @@
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0
+        "GB": 0.0
     },
     {
         "#": 2,
@@ -17,7 +17,7 @@
         "L": 1,
         "T": 0,
         "PCT": 0.833,
-        "GB": 1
+        "GB": 1.0
     },
     {
         "#": 3,
@@ -27,7 +27,7 @@
         "L": 2,
         "T": 0,
         "PCT": 0.667,
-        "GB": 2
+        "GB": 2.0
     },
     {
         "#": 4,
@@ -37,26 +37,26 @@
         "L": 4,
         "T": 0,
         "PCT": 0.333,
-        "GB": 4
+        "GB": 4.0
     },
     {
         "#": 5,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Beveren_Lions.png",
         "Team.1": "BEV  Beveren Lions 2",
-        "W": 1,
+        "W": 2,
         "L": 5,
         "T": 0,
-        "PCT": 0.167,
-        "GB": 5
+        "PCT": 0.286,
+        "GB": 4.5
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 0,
-        "L": 6,
+        "L": 7,
         "T": 0,
         "PCT": 0.0,
-        "GB": 6
+        "GB": 6.5
     }
 ]
