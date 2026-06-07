@@ -3,7 +3,7 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Gent_Knights.png",
         "Team.1": "GEN  Gent Knights",
-        "W": 7,
+        "W": 8,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
@@ -13,10 +13,10 @@
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
-        "W": 8,
+        "W": 9,
         "L": 1,
         "T": 0,
-        "PCT": 0.889,
+        "PCT": 0.9,
         "GB": 0.0
     },
     {
@@ -24,29 +24,29 @@
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Borgerhout_Squirrels.png",
         "Team.1": "BOR  Borgerhout Squirrels 2",
         "W": 3,
-        "L": 4,
+        "L": 5,
         "T": 0,
-        "PCT": 0.429,
-        "GB": 4.0
+        "PCT": 0.375,
+        "GB": 5.0
+    },
+    {
+        "#": 4,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brasschaat_Braves.jpg",
+        "Team.1": "BRA  Brasschaat Braves 2",
+        "W": 3,
+        "L": 6,
+        "T": 0,
+        "PCT": 0.333,
+        "GB": 5.5
     },
     {
         "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 3,
-        "L": 5,
-        "T": 0,
-        "PCT": 0.375,
-        "GB": 4.5
-    },
-    {
-        "#": 5,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brasschaat_Braves.jpg",
-        "Team.1": "BRA  Brasschaat Braves 2",
-        "W": 2,
         "L": 6,
         "T": 0,
-        "PCT": 0.25,
+        "PCT": 0.333,
         "GB": 5.5
     },
     {
@@ -54,9 +54,9 @@
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/WBA_Foxes.png",
         "Team.1": "WBA  WBA Foxes",
         "W": 1,
-        "L": 8,
+        "L": 9,
         "T": 0,
-        "PCT": 0.111,
-        "GB": 7.0
+        "PCT": 0.1,
+        "GB": 8.0
     }
 ]
