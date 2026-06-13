@@ -40,23 +40,23 @@
         "GB": 4.5
     },
     {
-        "#": 5,
+        "#": 4,
         "Team": "",
         "Team.1": "GEN  Wielsbeke-Gent Grietjes",
-        "W": 2,
+        "W": 3,
         "L": 5,
         "T": 0,
-        "PCT": 0.286,
-        "GB": 5.0
+        "PCT": 0.375,
+        "GB": 4.5
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 0,
-        "L": 7,
+        "L": 8,
         "T": 0,
         "PCT": 0.0,
-        "GB": 7.0
+        "GB": 7.5
     }
 ]
