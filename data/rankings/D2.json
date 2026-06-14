@@ -3,7 +3,7 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Gent_Knights.png",
         "Team.1": "GEN  Gent Knights",
-        "W": 8,
+        "W": 9,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
@@ -14,10 +14,10 @@
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 9,
-        "L": 1,
+        "L": 2,
         "T": 0,
-        "PCT": 0.9,
-        "GB": 0.0
+        "PCT": 0.818,
+        "GB": 1.0
     },
     {
         "#": 3,
@@ -27,7 +27,7 @@
         "L": 5,
         "T": 0,
         "PCT": 0.375,
-        "GB": 5.0
+        "GB": 5.5
     },
     {
         "#": 4,
@@ -37,7 +37,7 @@
         "L": 6,
         "T": 0,
         "PCT": 0.333,
-        "GB": 5.5
+        "GB": 6.0
     },
     {
         "#": 4,
@@ -47,7 +47,7 @@
         "L": 6,
         "T": 0,
         "PCT": 0.333,
-        "GB": 5.5
+        "GB": 6.0
     },
     {
         "#": 6,
@@ -57,6 +57,6 @@
         "L": 9,
         "T": 0,
         "PCT": 0.1,
-        "GB": 8.0
+        "GB": 8.5
     }
 ]

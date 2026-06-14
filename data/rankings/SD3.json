@@ -3,31 +3,31 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
         "Team.1": "DEU  Deurne Spartans",
-        "W": 7,
+        "W": 8,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0.0
+        "GB": 0
     },
     {
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
         "Team.1": "GRE  Royal Greys 1",
         "W": 5,
-        "L": 2,
+        "L": 3,
         "T": 0,
-        "PCT": 0.714,
-        "GB": 2.0
+        "PCT": 0.625,
+        "GB": 3
     },
     {
-        "#": 3,
+        "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
         "Team.1": "MER  Merchtem Cats 2",
         "W": 5,
         "L": 3,
         "T": 0,
         "PCT": 0.625,
-        "GB": 2.5
+        "GB": 3
     },
     {
         "#": 4,
@@ -37,7 +37,7 @@
         "L": 5,
         "T": 0,
         "PCT": 0.375,
-        "GB": 4.5
+        "GB": 5
     },
     {
         "#": 4,
@@ -47,7 +47,7 @@
         "L": 5,
         "T": 0,
         "PCT": 0.375,
-        "GB": 4.5
+        "GB": 5
     },
     {
         "#": 6,
@@ -57,6 +57,6 @@
         "L": 8,
         "T": 0,
         "PCT": 0.0,
-        "GB": 7.5
+        "GB": 8
     }
 ]
