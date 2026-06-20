@@ -3,10 +3,10 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
-        "W": 8,
+        "W": 9,
         "L": 0,
         "T": 1,
-        "PCT": 0.944,
+        "PCT": 0.95,
         "GB": 0.0
     },
     {
@@ -17,7 +17,7 @@
         "L": 3,
         "T": 0,
         "PCT": 0.667,
-        "GB": 2.5
+        "GB": 3.0
     },
     {
         "#": 3,
@@ -27,7 +27,7 @@
         "L": 3,
         "T": 1,
         "PCT": 0.65,
-        "GB": 2.5
+        "GB": 3.0
     },
     {
         "#": 4,
@@ -37,17 +37,17 @@
         "L": 5,
         "T": 0,
         "PCT": 0.375,
-        "GB": 5.0
+        "GB": 5.5
     },
     {
         "#": 5,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Oudenaarde_Frogs.jpg",
         "Team.1": "OUD  Oudenaarde Frogs",
         "W": 3,
-        "L": 6,
+        "L": 7,
         "T": 0,
-        "PCT": 0.333,
-        "GB": 5.5
+        "PCT": 0.3,
+        "GB": 6.5
     },
     {
         "#": 6,
@@ -57,6 +57,6 @@
         "L": 9,
         "T": 0,
         "PCT": 0.0,
-        "GB": 8.5
+        "GB": 9.0
     }
 ]
