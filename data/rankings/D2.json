@@ -23,11 +23,11 @@
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
-        "W": 4,
+        "W": 5,
         "L": 6,
         "T": 0,
-        "PCT": 0.4,
-        "GB": 5.5
+        "PCT": 0.455,
+        "GB": 5.0
     },
     {
         "#": 4,
@@ -40,14 +40,14 @@
         "GB": 6.0
     },
     {
-        "#": 4,
+        "#": 5,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brasschaat_Braves.jpg",
         "Team.1": "BRA  Brasschaat Braves 2",
         "W": 3,
-        "L": 6,
+        "L": 7,
         "T": 0,
-        "PCT": 0.333,
-        "GB": 6.0
+        "PCT": 0.3,
+        "GB": 6.5
     },
     {
         "#": 6,
