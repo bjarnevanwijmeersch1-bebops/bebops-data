@@ -33,11 +33,11 @@
         "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
-        "W": 3,
+        "W": 4,
         "L": 5,
         "T": 0,
-        "PCT": 0.375,
-        "GB": 5.5
+        "PCT": 0.444,
+        "GB": 5.0
     },
     {
         "#": 5,
@@ -54,9 +54,9 @@
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Poperinge_Frontliners.png",
         "Team.1": "POP  Poperinge Frontliners",
         "W": 0,
-        "L": 9,
+        "L": 10,
         "T": 0,
         "PCT": 0.0,
-        "GB": 9.0
+        "GB": 9.5
     }
 ]
