@@ -31,6 +31,16 @@
     },
     {
         "#": 4,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Oudenaarde_Frogs.jpg",
+        "Team.1": "OUD  Oudenaarde Frogs",
+        "W": 3,
+        "L": 3,
+        "T": 1,
+        "PCT": 0.5,
+        "GB": 3.5
+    },
+    {
+        "#": 5,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/WBA_Foxes.png",
         "Team.1": "WBA  WBA Foxes Orange",
         "W": 3,
@@ -40,24 +50,14 @@
         "GB": 4.0
     },
     {
-        "#": 5,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Oudenaarde_Frogs.jpg",
-        "Team.1": "OUD  Oudenaarde Frogs",
-        "W": 2,
-        "L": 3,
-        "T": 1,
-        "PCT": 0.417,
-        "GB": 4.0
-    },
-    {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
         "Team.1": "MER  Merchtem Cats 2",
         "W": 1,
-        "L": 4,
+        "L": 5,
         "T": 0,
-        "PCT": 0.2,
-        "GB": 5.0
+        "PCT": 0.167,
+        "GB": 5.5
     },
     {
         "#": 7,
