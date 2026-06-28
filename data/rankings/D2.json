@@ -13,11 +13,11 @@
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
-        "W": 9,
+        "W": 10,
         "L": 2,
         "T": 0,
-        "PCT": 0.818,
-        "GB": 1.5
+        "PCT": 0.833,
+        "GB": 1.0
     },
     {
         "#": 3,
@@ -34,10 +34,10 @@
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Borgerhout_Squirrels.png",
         "Team.1": "BOR  Borgerhout Squirrels 2",
         "W": 3,
-        "L": 6,
+        "L": 7,
         "T": 0,
-        "PCT": 0.333,
-        "GB": 6.5
+        "PCT": 0.3,
+        "GB": 7.0
     },
     {
         "#": 5,
