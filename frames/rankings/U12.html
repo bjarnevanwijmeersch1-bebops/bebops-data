@@ -190,6 +190,7 @@
         padding: 10px;
         font-size: 1rem;
         color: var(--text-dark);
+        vertical-align: middle;
       }
 
       .team-cell {
@@ -317,6 +318,8 @@
       }
 
       function scaleTableToFit() {
+        const content = document.querySelector('.content');
+        const title = document.querySelector('.division-title');
         const tableWrapper = document.querySelector('.table-wrapper');
         const table = document.querySelector('.rankings-table');
         const thead = table.querySelector('thead');
@@ -325,31 +328,39 @@
 
         if (rows.length === 0) return;
 
-        // Reset any previous scaling
+        // Reset previous styles
         tableWrapper.style.transform = '';
-        tableWrapper.style.transformOrigin = 'top center';
+        tableWrapper.style.height = '';
         rows.forEach(row => row.style.height = '');
 
-        // Get available height for table body
-        const wrapperHeight = tableWrapper.clientHeight;
+        // Calculate total available height
+        const screenHeight = window.innerHeight;
+        const headerHeight = 100; // Fixed header
+        const contentPadding = 30; // 15px top + 15px bottom
+        const titleHeight = title.offsetHeight + 10; // title + margin
         const theadHeight = thead.offsetHeight;
-        const availableBodyHeight = wrapperHeight - theadHeight;
 
-        // Calculate natural table height
-        const naturalTableHeight = table.offsetHeight;
-        const naturalBodyHeight = tbody.offsetHeight;
+        // Available height for table body rows
+        const availableForBody = screenHeight - headerHeight - contentPadding - titleHeight - theadHeight;
 
-        // If table fits, distribute extra space among rows
-        if (naturalTableHeight <= wrapperHeight) {
-          const rowHeight = availableBodyHeight / rows.length;
+        // Calculate height per row
+        const rowHeight = Math.floor(availableForBody / rows.length);
+
+        // Minimum row height check - if rows would be too small, scale down instead
+        const minRowHeight = 40;
+
+        if (rowHeight >= minRowHeight) {
+          // Rows fit - distribute height evenly
           rows.forEach(row => {
             row.style.height = `${rowHeight}px`;
           });
         } else {
-          // Table is too tall, scale it down
-          const scale = wrapperHeight / naturalTableHeight;
+          // Too many rows - scale the table down
+          const naturalTableHeight = table.offsetHeight;
+          const availableTableHeight = screenHeight - headerHeight - contentPadding - titleHeight;
+          const scale = availableTableHeight / naturalTableHeight;
           tableWrapper.style.transform = `scale(${scale})`;
-          tableWrapper.style.transformOrigin = 'top center';
+          tableWrapper.style.transformOrigin = 'top left';
           tableWrapper.style.height = `${naturalTableHeight}px`;
         }
       }
