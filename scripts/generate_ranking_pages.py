@@ -113,23 +113,15 @@ def generate_html_template(division_name, division_id):
         right: 0;
         bottom: 0;
         padding: 15px 40px;
-        display: flex;
-        flex-direction: column;
       }}
 
       .rankings-container {{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
         max-width: 1400px;
         width: 100%;
         margin: 0 auto;
       }}
 
       .division-section {{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
       }}
 
       .division-title {{
