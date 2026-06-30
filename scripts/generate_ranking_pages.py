@@ -113,15 +113,23 @@ def generate_html_template(division_name, division_id):
         right: 0;
         bottom: 0;
         padding: 15px 40px;
+        display: flex;
+        flex-direction: column;
       }}
 
       .rankings-container {{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         max-width: 1400px;
         width: 100%;
         margin: 0 auto;
       }}
 
       .division-section {{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
       }}
 
       .division-title {{
@@ -135,7 +143,9 @@ def generate_html_template(division_name, division_id):
       }}
 
       .table-wrapper {{
-        display: inline-block;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         background: white;
         border-radius: 10px;
         overflow: hidden;
@@ -145,8 +155,13 @@ def generate_html_template(division_name, division_id):
 
       .rankings-table {{
         width: 100%;
+        height: 100%;
         border-collapse: collapse;
         table-layout: fixed;
+      }}
+
+      .rankings-table tbody {{
+        display: table-row-group;
       }}
 
       .rankings-table thead {{
@@ -311,28 +326,40 @@ def generate_html_template(division_name, division_id):
       }}
 
       function scaleTableToFit() {{
-        const content = document.querySelector('.content');
         const tableWrapper = document.querySelector('.table-wrapper');
         const table = document.querySelector('.rankings-table');
-        const title = document.querySelector('.division-title');
+        const thead = table.querySelector('thead');
+        const tbody = table.querySelector('tbody');
+        const rows = tbody.querySelectorAll('tr');
+
+        if (rows.length === 0) return;
 
         // Reset any previous scaling
         tableWrapper.style.transform = '';
         tableWrapper.style.transformOrigin = 'top center';
+        rows.forEach(row => row.style.height = '');
 
-        // Calculate available height (content area minus title and padding)
-        const contentHeight = content.clientHeight;
-        const titleHeight = title.offsetHeight + 10;
-        const availableHeight = contentHeight - titleHeight;
+        // Get available height for table body
+        const wrapperHeight = tableWrapper.clientHeight;
+        const theadHeight = thead.offsetHeight;
+        const availableBodyHeight = wrapperHeight - theadHeight;
 
-        // Get table actual height
-        const tableHeight = table.offsetHeight;
+        // Calculate natural table height
+        const naturalTableHeight = table.offsetHeight;
+        const naturalBodyHeight = tbody.offsetHeight;
 
-        // If table is taller than available space, scale it down
-        if (tableHeight > availableHeight) {{
-          const scale = availableHeight / tableHeight;
+        // If table fits, distribute extra space among rows
+        if (naturalTableHeight <= wrapperHeight) {{
+          const rowHeight = availableBodyHeight / rows.length;
+          rows.forEach(row => {{
+            row.style.height = `${{rowHeight}}px`;
+          }});
+        }} else {{
+          // Table is too tall, scale it down
+          const scale = wrapperHeight / naturalTableHeight;
           tableWrapper.style.transform = `scale(${{scale}})`;
-          tableWrapper.style.height = `${{tableHeight}}px`;
+          tableWrapper.style.transformOrigin = 'top center';
+          tableWrapper.style.height = `${{naturalTableHeight}}px`;
         }}
       }}
 
