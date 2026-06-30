@@ -143,13 +143,12 @@ def generate_html_template(division_name, division_id):
       }}
 
       .table-wrapper {{
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        display: inline-block;
         background: white;
         border-radius: 10px;
         overflow: hidden;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
       }}
 
       .rankings-table {{
