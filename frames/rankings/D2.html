@@ -98,38 +98,55 @@
       }
 
       .content {
-        width: 100%;
-        height: 100%;
-        padding: 120px 60px 60px 60px;
-        overflow-y: auto;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 15px 40px;
+        display: flex;
+        flex-direction: column;
       }
 
       .rankings-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         max-width: 1400px;
+        width: 100%;
         margin: 0 auto;
       }
 
       .division-section {
-        margin-bottom: 60px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
       }
 
       .division-title {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: var(--primary-color);
         text-transform: uppercase;
         letter-spacing: 4px;
-        margin-bottom: 30px;
+        margin-bottom: 10px;
         text-align: center;
+      }
+
+      .table-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       }
 
       .rankings-table {
         width: 100%;
         border-collapse: collapse;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        table-layout: fixed;
       }
 
       .rankings-table thead {
@@ -142,9 +159,9 @@
       }
 
       .rankings-table th {
-        padding: 20px 15px;
+        padding: 12px 10px;
         font-family: "Bebas Neue", sans-serif;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         letter-spacing: 2px;
         text-align: left;
       }
@@ -156,11 +173,6 @@
 
       .rankings-table tbody tr {
         border-bottom: 1px solid #f0f0f0;
-        transition: background-color 0.2s;
-      }
-
-      .rankings-table tbody tr:hover {
-        background-color: #f8f9fa;
       }
 
       .rankings-table tbody tr.bebops {
@@ -168,35 +180,35 @@
         font-weight: 600;
       }
 
-      .rankings-table tbody tr.bebops:hover {
-        background-color: #ffe5e5;
-      }
-
       .rankings-table td {
-        padding: 15px;
-        font-size: 1.1rem;
+        padding: 10px;
+        font-size: 1rem;
         color: var(--text-dark);
       }
 
       .team-cell {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
       }
 
       .team-logo {
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
         object-fit: contain;
+        flex-shrink: 0;
       }
 
       .team-name {
         font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .rank-cell {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         color: var(--primary-color);
         font-weight: bold;
       }
@@ -204,6 +216,20 @@
       .stats-cell {
         font-weight: 600;
       }
+
+      /* Column widths */
+      .rankings-table th:nth-child(1),
+      .rankings-table td:nth-child(1) { width: 50px; }
+      .rankings-table th:nth-child(3),
+      .rankings-table td:nth-child(3),
+      .rankings-table th:nth-child(4),
+      .rankings-table td:nth-child(4),
+      .rankings-table th:nth-child(5),
+      .rankings-table td:nth-child(5) { width: 50px; }
+      .rankings-table th:nth-child(6),
+      .rankings-table td:nth-child(6),
+      .rankings-table th:nth-child(7),
+      .rankings-table td:nth-child(7) { width: 70px; }
     </style>
   </head>
   <body>
@@ -225,24 +251,26 @@
       <div class="rankings-container">
         <div id="d2-section" class="division-section">
           <div class="division-title">Division 2</div>
-          <table class="rankings-table">
-            <thead>
-              <tr>
-                <th class="center">#</th>
-                <th>Team</th>
-                <th class="center">W</th>
-                <th class="center">L</th>
-                <th class="center">T</th>
-                <th class="center">PCT</th>
-                <th class="center">GB</th>
-              </tr>
-            </thead>
-            <tbody id="d2-tbody">
-              <tr>
-                <td colspan="7" class="center">Loading...</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-wrapper">
+            <table class="rankings-table">
+              <thead>
+                <tr>
+                  <th class="center">#</th>
+                  <th>Team</th>
+                  <th class="center">W</th>
+                  <th class="center">L</th>
+                  <th class="center">T</th>
+                  <th class="center">PCT</th>
+                  <th class="center">GB</th>
+                </tr>
+              </thead>
+              <tbody id="d2-tbody">
+                <tr>
+                  <td colspan="7" class="center">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -282,6 +310,32 @@
         return row;
       }
 
+      function scaleTableToFit() {
+        const content = document.querySelector('.content');
+        const tableWrapper = document.querySelector('.table-wrapper');
+        const table = document.querySelector('.rankings-table');
+        const title = document.querySelector('.division-title');
+
+        // Reset any previous scaling
+        tableWrapper.style.transform = '';
+        tableWrapper.style.transformOrigin = 'top center';
+
+        // Calculate available height (content area minus title and padding)
+        const contentHeight = content.clientHeight;
+        const titleHeight = title.offsetHeight + 10;
+        const availableHeight = contentHeight - titleHeight;
+
+        // Get table actual height
+        const tableHeight = table.offsetHeight;
+
+        // If table is taller than available space, scale it down
+        if (tableHeight > availableHeight) {
+          const scale = availableHeight / tableHeight;
+          tableWrapper.style.transform = `scale(${scale})`;
+          tableWrapper.style.height = `${tableHeight}px`;
+        }
+      }
+
       async function loadRankings() {
         try {
           const d2Response = await fetch(`${DATA_BASE_URL}D2.json`);
@@ -291,11 +345,17 @@
           d2Data.forEach(team => {
             d2Tbody.appendChild(createTeamRow(team));
           });
+
+          // Scale table to fit viewport after loading
+          setTimeout(scaleTableToFit, 100);
         } catch (error) {
           console.error('Error loading rankings:', error);
           document.getElementById('d2-tbody').innerHTML = '<tr><td colspan="7" class="center">Error loading rankings</td></tr>';
         }
       }
+
+      // Rescale on window resize
+      window.addEventListener('resize', scaleTableToFit);
 
       loadRankings();
     </script>
