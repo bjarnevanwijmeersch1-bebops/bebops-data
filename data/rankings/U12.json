@@ -3,60 +3,60 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
-        "W": 5,
+        "W": 9,
         "L": 0,
         "T": 1,
-        "PCT": 0.917,
+        "PCT": 0.95,
         "GB": 0.0
     },
     {
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Oostende_Piranhas.png",
         "Team.1": "OOS  Oostende Piranhas",
-        "W": 4,
-        "L": 2,
+        "W": 6,
+        "L": 3,
         "T": 0,
         "PCT": 0.667,
-        "GB": 1.5
+        "GB": 3.0
     },
     {
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Gent_Knights.png",
         "Team.1": "GEN  Gent Knights",
-        "W": 3,
-        "L": 2,
+        "W": 6,
+        "L": 3,
         "T": 1,
-        "PCT": 0.583,
-        "GB": 2.0
+        "PCT": 0.65,
+        "GB": 3.0
     },
     {
         "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
-        "W": 3,
-        "L": 3,
+        "W": 4,
+        "L": 5,
         "T": 0,
-        "PCT": 0.5,
-        "GB": 2.5
+        "PCT": 0.444,
+        "GB": 5.0
     },
     {
         "#": 5,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Oudenaarde_Frogs.jpg",
         "Team.1": "OUD  Oudenaarde Frogs",
-        "W": 2,
-        "L": 4,
+        "W": 3,
+        "L": 7,
         "T": 0,
-        "PCT": 0.333,
-        "GB": 3.5
+        "PCT": 0.3,
+        "GB": 6.5
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Poperinge_Frontliners.png",
         "Team.1": "POP  Poperinge Frontliners",
         "W": 0,
-        "L": 6,
+        "L": 10,
         "T": 0,
         "PCT": 0.0,
-        "GB": 5.5
+        "GB": 9.5
     }
 ]
