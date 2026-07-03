@@ -7,7 +7,7 @@
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0
+        "GB": 0.0
     },
     {
         "#": 2,
@@ -17,7 +17,7 @@
         "L": 4,
         "T": 0,
         "PCT": 0.667,
-        "GB": 3
+        "GB": 3.0
     },
     {
         "#": 3,
@@ -27,17 +27,17 @@
         "L": 6,
         "T": 0,
         "PCT": 0.4,
-        "GB": 6
+        "GB": 6.0
     },
     {
         "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
         "Team.1": "DEU  Deurne Spartans 2",
         "W": 3,
-        "L": 5,
-        "T": 1,
-        "PCT": 0.389,
-        "GB": 6
+        "L": 6,
+        "T": 0,
+        "PCT": 0.333,
+        "GB": 6.5
     },
     {
         "#": 5,
@@ -47,16 +47,16 @@
         "L": 8,
         "T": 0,
         "PCT": 0.333,
-        "GB": 7
+        "GB": 7.0
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brussels_Kangaroos.png",
         "Team.1": "BRU  Brussels Kangaroos 3",
-        "W": 3,
+        "W": 4,
         "L": 9,
-        "T": 1,
-        "PCT": 0.269,
-        "GB": 8
+        "T": 0,
+        "PCT": 0.308,
+        "GB": 7.5
     }
 ]
