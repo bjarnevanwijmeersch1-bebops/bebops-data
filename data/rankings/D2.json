@@ -7,27 +7,27 @@
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0
+        "GB": 0.0
     },
     {
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
-        "W": 10,
+        "W": 11,
         "L": 2,
         "T": 0,
-        "PCT": 0.833,
-        "GB": 2
+        "PCT": 0.846,
+        "GB": 1.5
     },
     {
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 6,
-        "L": 6,
+        "L": 7,
         "T": 0,
-        "PCT": 0.5,
-        "GB": 6
+        "PCT": 0.462,
+        "GB": 6.5
     },
     {
         "#": 4,
@@ -37,7 +37,7 @@
         "L": 8,
         "T": 0,
         "PCT": 0.333,
-        "GB": 8
+        "GB": 8.0
     },
     {
         "#": 5,
@@ -47,7 +47,7 @@
         "L": 9,
         "T": 0,
         "PCT": 0.25,
-        "GB": 9
+        "GB": 9.0
     },
     {
         "#": 6,
@@ -57,6 +57,6 @@
         "L": 11,
         "T": 0,
         "PCT": 0.083,
-        "GB": 11
+        "GB": 11.0
     }
 ]
