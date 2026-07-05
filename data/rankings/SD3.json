@@ -3,7 +3,7 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
         "Team.1": "DEU  Deurne Spartans",
-        "W": 8,
+        "W": 9,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
@@ -11,52 +11,52 @@
     },
     {
         "#": 2,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
-        "Team.1": "GRE  Royal Greys 1",
-        "W": 5,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
+        "Team.1": "MER  Merchtem Cats 2",
+        "W": 6,
         "L": 3,
         "T": 0,
-        "PCT": 0.625,
+        "PCT": 0.667,
         "GB": 3
     },
     {
-        "#": 2,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
-        "Team.1": "MER  Merchtem Cats 2",
+        "#": 3,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
+        "Team.1": "GRE  Royal Greys 1",
         "W": 5,
-        "L": 3,
+        "L": 4,
         "T": 0,
-        "PCT": 0.625,
-        "GB": 3
+        "PCT": 0.556,
+        "GB": 4
     },
     {
         "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Beveren_Lions.png",
         "Team.1": "BEV  Beveren Lions 2",
-        "W": 3,
+        "W": 4,
         "L": 5,
         "T": 0,
-        "PCT": 0.375,
+        "PCT": 0.444,
         "GB": 5
     },
     {
-        "#": 4,
+        "#": 5,
         "Team": "",
         "Team.1": "GEN  Wielsbeke-Gent Grietjes",
         "W": 3,
-        "L": 5,
+        "L": 6,
         "T": 0,
-        "PCT": 0.375,
-        "GB": 5
+        "PCT": 0.333,
+        "GB": 6
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 0,
-        "L": 8,
+        "L": 9,
         "T": 0,
         "PCT": 0.0,
-        "GB": 8
+        "GB": 9
     }
 ]
