@@ -23,11 +23,11 @@
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Oostende_Piranhas.png",
         "Team.1": "OOS  Oostende Piranhas",
-        "W": 6,
+        "W": 7,
         "L": 3,
         "T": 0,
-        "PCT": 0.667,
-        "GB": 2.5
+        "PCT": 0.7,
+        "GB": 2.0
     },
     {
         "#": 4,
@@ -61,16 +61,6 @@
     },
     {
         "#": 7,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Poperinge_Frontliners.png",
-        "Team.1": "POP  Poperinge Frontliners",
-        "W": 1,
-        "L": 8,
-        "T": 0,
-        "PCT": 0.111,
-        "GB": 7.5
-    },
-    {
-        "#": 7,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 1,
@@ -78,5 +68,15 @@
         "T": 0,
         "PCT": 0.111,
         "GB": 7.5
+    },
+    {
+        "#": 8,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Poperinge_Frontliners.png",
+        "Team.1": "POP  Poperinge Frontliners",
+        "W": 1,
+        "L": 9,
+        "T": 0,
+        "PCT": 0.1,
+        "GB": 8.0
     }
 ]
