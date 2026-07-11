@@ -7,7 +7,7 @@
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0
+        "GB": 0.0
     },
     {
         "#": 2,
@@ -17,27 +17,27 @@
         "L": 3,
         "T": 0,
         "PCT": 0.667,
-        "GB": 3
+        "GB": 3.0
     },
     {
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
         "Team.1": "GRE  Royal Greys 1",
-        "W": 5,
+        "W": 6,
         "L": 4,
         "T": 0,
-        "PCT": 0.556,
-        "GB": 4
+        "PCT": 0.6,
+        "GB": 3.5
     },
     {
         "#": 4,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Beveren_Lions.png",
         "Team.1": "BEV  Beveren Lions 2",
         "W": 4,
-        "L": 5,
+        "L": 6,
         "T": 0,
-        "PCT": 0.444,
-        "GB": 5
+        "PCT": 0.4,
+        "GB": 5.5
     },
     {
         "#": 5,
@@ -47,7 +47,7 @@
         "L": 6,
         "T": 0,
         "PCT": 0.333,
-        "GB": 6
+        "GB": 6.0
     },
     {
         "#": 6,
@@ -57,6 +57,6 @@
         "L": 9,
         "T": 0,
         "PCT": 0.0,
-        "GB": 9
+        "GB": 9.0
     }
 ]
