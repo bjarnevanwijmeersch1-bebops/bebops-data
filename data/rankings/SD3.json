@@ -3,21 +3,21 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
         "Team.1": "DEU  Deurne Spartans",
-        "W": 9,
+        "W": 10,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0.0
+        "GB": 0
     },
     {
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Merchtem_Cats.png",
         "Team.1": "MER  Merchtem Cats 2",
-        "W": 6,
+        "W": 7,
         "L": 3,
         "T": 0,
-        "PCT": 0.667,
-        "GB": 3.0
+        "PCT": 0.7,
+        "GB": 3
     },
     {
         "#": 3,
@@ -27,7 +27,7 @@
         "L": 4,
         "T": 0,
         "PCT": 0.6,
-        "GB": 3.5
+        "GB": 4
     },
     {
         "#": 4,
@@ -37,26 +37,26 @@
         "L": 6,
         "T": 0,
         "PCT": 0.4,
-        "GB": 5.5
+        "GB": 6
     },
     {
         "#": 5,
         "Team": "",
         "Team.1": "GEN  Wielsbeke-Gent Grietjes",
         "W": 3,
-        "L": 6,
+        "L": 7,
         "T": 0,
-        "PCT": 0.333,
-        "GB": 6.0
+        "PCT": 0.3,
+        "GB": 7
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
         "W": 0,
-        "L": 9,
+        "L": 10,
         "T": 0,
         "PCT": 0.0,
-        "GB": 9.0
+        "GB": 10
     }
 ]
