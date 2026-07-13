@@ -21,8 +21,8 @@
     },
     {
         "#": 3,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Hoboken_Pioneers.png",
-        "Team.1": "HOB  Hoboken Pioneers 2",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
+        "Team.1": "DEU  Deurne Spartans 2",
         "W": 4,
         "L": 6,
         "T": 0,
@@ -30,14 +30,14 @@
         "GB": 7.0
     },
     {
-        "#": 4,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
-        "Team.1": "DEU  Deurne Spartans 2",
-        "W": 3,
+        "#": 3,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Hoboken_Pioneers.png",
+        "Team.1": "HOB  Hoboken Pioneers 2",
+        "W": 4,
         "L": 6,
         "T": 0,
-        "PCT": 0.333,
-        "GB": 7.5
+        "PCT": 0.4,
+        "GB": 7.0
     },
     {
         "#": 5,
@@ -54,9 +54,9 @@
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Leuven_Twins.png",
         "Team.1": "LEU  Leuven Twins",
         "W": 4,
-        "L": 9,
+        "L": 10,
         "T": 0,
-        "PCT": 0.308,
-        "GB": 8.5
+        "PCT": 0.286,
+        "GB": 9.0
     }
 ]
