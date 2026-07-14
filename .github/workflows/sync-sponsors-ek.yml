@@ -1,0 +1,31 @@
+name: Sync EK Sponsors to PiSignage
+
+on:
+  # Manual trigger only
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sync EK sponsors to PiSignage
+        env:
+          PISIGNAGE_USERNAME: ${{ secrets.PISIGNAGE_USERNAME }}
+          PISIGNAGE_EMAIL: ${{ secrets.PISIGNAGE_EMAIL }}
+          PISIGNAGE_PASSWORD: ${{ secrets.PISIGNAGE_PASSWORD }}
+          IMAP_HOST: ${{ secrets.IMAP_HOST }}
+          IMAP_EMAIL: ${{ secrets.IMAP_EMAIL }}
+          IMAP_PASSWORD: ${{ secrets.IMAP_PASSWORD }}
+        run: python scripts/sync_pisignage_ek.py
