@@ -3,7 +3,7 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Gent_Knights.png",
         "Team.1": "GEN  Gent Knights",
-        "W": 10,
+        "W": 13,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
@@ -13,50 +13,50 @@
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops",
-        "W": 10,
+        "W": 12,
         "L": 2,
         "T": 0,
-        "PCT": 0.833,
-        "GB": 1.0
+        "PCT": 0.857,
+        "GB": 1.5
     },
     {
         "#": 3,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Wielsbeke_Pitbulls.png",
         "Team.1": "WIE  Wielsbeke Pitbulls",
         "W": 6,
-        "L": 6,
+        "L": 8,
         "T": 0,
-        "PCT": 0.5,
-        "GB": 5.0
+        "PCT": 0.429,
+        "GB": 7.5
     },
     {
         "#": 4,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Borgerhout_Squirrels.png",
-        "Team.1": "BOR  Borgerhout Squirrels 2",
-        "W": 3,
-        "L": 7,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brasschaat_Braves.jpg",
+        "Team.1": "BRA  Brasschaat Braves 2",
+        "W": 4,
+        "L": 9,
         "T": 0,
-        "PCT": 0.3,
-        "GB": 7.0
+        "PCT": 0.308,
+        "GB": 9.0
     },
     {
         "#": 5,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brasschaat_Braves.jpg",
-        "Team.1": "BRA  Brasschaat Braves 2",
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Borgerhout_Squirrels.png",
+        "Team.1": "BOR  Borgerhout Squirrels 2",
         "W": 3,
-        "L": 8,
+        "L": 9,
         "T": 0,
-        "PCT": 0.273,
-        "GB": 7.5
+        "PCT": 0.25,
+        "GB": 9.5
     },
     {
         "#": 6,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/WBA_Foxes.png",
         "Team.1": "WBA  WBA Foxes",
         "W": 1,
-        "L": 10,
+        "L": 11,
         "T": 0,
-        "PCT": 0.091,
-        "GB": 9.5
+        "PCT": 0.083,
+        "GB": 11.5
     }
 ]

@@ -3,21 +3,31 @@
         "#": 1,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Royal_Greys.png",
         "Team.1": "GRE  Royal Greys",
-        "W": 10,
+        "W": 12,
         "L": 0,
         "T": 0,
         "PCT": 1.0,
-        "GB": 0
+        "GB": 0.0
     },
     {
         "#": 2,
         "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/logo.png",
         "Team.1": "ZOT  Zottegem Bebops 2",
         "W": 8,
-        "L": 4,
+        "L": 5,
         "T": 0,
-        "PCT": 0.667,
-        "GB": 3
+        "PCT": 0.615,
+        "GB": 4.5
+    },
+    {
+        "#": 3,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
+        "Team.1": "DEU  Deurne Spartans 2",
+        "W": 4,
+        "L": 6,
+        "T": 0,
+        "PCT": 0.4,
+        "GB": 7.0
     },
     {
         "#": 3,
@@ -27,36 +37,26 @@
         "L": 6,
         "T": 0,
         "PCT": 0.4,
-        "GB": 6
-    },
-    {
-        "#": 4,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Deurne_Spartans.png",
-        "Team.1": "DEU  Deurne Spartans 2",
-        "W": 3,
-        "L": 5,
-        "T": 1,
-        "PCT": 0.389,
-        "GB": 6
+        "GB": 7.0
     },
     {
         "#": 5,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Leuven_Twins.png",
-        "Team.1": "LEU  Leuven Twins",
-        "W": 4,
-        "L": 8,
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brussels_Kangaroos.png",
+        "Team.1": "BRU  Brussels Kangaroos 3",
+        "W": 5,
+        "L": 10,
         "T": 0,
         "PCT": 0.333,
-        "GB": 7
+        "GB": 8.5
     },
     {
         "#": 6,
-        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Brussels_Kangaroos.png",
-        "Team.1": "BRU  Brussels Kangaroos 3",
-        "W": 3,
-        "L": 9,
-        "T": 1,
-        "PCT": 0.269,
-        "GB": 8
+        "Team": "https://bjarnevanwijmeersch1-bebops.github.io/bebops-data/images/clubs/Leuven_Twins.png",
+        "Team.1": "LEU  Leuven Twins",
+        "W": 4,
+        "L": 10,
+        "T": 0,
+        "PCT": 0.286,
+        "GB": 9.0
     }
 ]
