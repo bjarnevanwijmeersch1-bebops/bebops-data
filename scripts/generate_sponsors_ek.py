@@ -268,7 +268,7 @@ def generate_sponsor_html(sponsor_name: str, sponsor_image_base64: str, logo_bas
     </div>
 
     <div class="frame">
-      <div class="section-title">Met dank aan onze EK sponsor</div>
+      <div class="section-title">Thanks to our European Championship sponsor</div>
       <div class="sponsor-container">
         <img
           src="{sponsor_image_base64}"
